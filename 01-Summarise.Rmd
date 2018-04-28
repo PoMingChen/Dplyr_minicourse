@@ -8,7 +8,19 @@
 
 > (In help) `The name will be the name of the variable in the result.` The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).
 
-```{r, cache=TRUE}
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(nycflights13)
+library(SportsAnalytics)
+fetch_NBAPlayerStatistics("17-18") -> NBA1718
+```
+
+
+```{r,}
 flights %>% summarise(avg_dep_delay = mean(dep_delay, na.rm = T), arr_delay_sd = sd(arr_delay, na.rm = T))
 #為什麼na.rm沒有去掉會變成NA?
 ```
@@ -19,7 +31,7 @@ flights %>% summarise(IQR_dep_delay = IQR(dep_delay, na.rm = T), max_dep_delay =
 
 ### 小練習{-}
 1. 請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？
-```{r}
+```{r, include=FALSE}
 NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(GamesPlayed))
 ```
 

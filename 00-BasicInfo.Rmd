@@ -1,7 +1,11 @@
 # 環境設定與基本觀察{-}
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+```
+
 ### 引入需要用到的套件{-}
-```{r, message=FALSE}
+```{r}
 library(tidyverse)
 library(nycflights13)
 library(SportsAnalytics)
