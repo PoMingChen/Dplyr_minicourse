@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R_Dplyr_minicourse</title>
+  <meta name="description" content="E.Major R_Dplyr_minicourse">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R_Dplyr_minicourse" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R_Dplyr_minicourse" />
+  
+  <meta name="twitter:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+<meta name="author" content="陳柏銘">
+
+
+<meta name="date" content="2018-04-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="e585b6e4bb96e58fafe794a8e79a84e587bde695b8.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>課程規劃</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e7a88be5a4a7e7b6b1"><i class="fa fa-check"></i>課程大綱</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html"><i class="fa fa-check"></i>敘述統計量</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html#section-0.0.1"><i class="fa fa-check"></i><b>0.0.1</b> 安裝本課程需要的套件</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><a href="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><i class="fa fa-check"></i>挑選適當的欄位</a></li>
+<li class="chapter" data-level="" data-path="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><a href="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><i class="fa fa-check"></i>篩選適當觀察值</a></li>
+<li class="chapter" data-level="" data-path="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><a href="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><i class="fa fa-check"></i>從既有變數產生新變數</a></li>
+<li class="chapter" data-level="" data-path="e59088e4bdb5e5a0b1e8a1a8.html"><a href="e59088e4bdb5e5a0b1e8a1a8.html"><i class="fa fa-check"></i>合併報表</a></li>
+<li class="chapter" data-level="" data-path="e58886e7bea4e58886e69e90.html"><a href="e58886e7bea4e58886e69e90.html"><i class="fa fa-check"></i>分群分析</a></li>
+<li class="chapter" data-level="" data-path="e68e92e5ba8fe8a780e5af9fe580bc.html"><a href="e68e92e5ba8fe8a780e5af9fe580bc.html"><i class="fa fa-check"></i>排序觀察值</a></li>
+<li class="chapter" data-level="" data-path="e585b6e4bb96e58fafe794a8e79a84e587bde695b8.html"><a href="e585b6e4bb96e58fafe794a8e79a84e587bde695b8.html"><i class="fa fa-check"></i>其他可用的函數</a></li>
+<li class="chapter" data-level="" data-path="e58f83e88083e8b387e69699.html"><a href="e58f83e88083e8b387e69699.html"><i class="fa fa-check"></i>參考資料</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R_Dplyr_minicourse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="e58f83e88083e8b387e69699" class="section level1 unnumbered">
+<h1>參考資料</h1>
+<p><a href="https://bookdown.org/tpemartin/dplyr_intro/section-1.html">林茂廷老師dplyr用書</a></p>
+<p><a href="http://r4ds.had.co.nz/introduction.html">r4ds</a></p>
+<p><a href="https://yijutseng.github.io/DataScienceRBook/">長庚資管大數據分析課程用書</a></p>
+<p><a href="https://www.meetup.com/Taiwan-R/">推薦活動：taiwan r user group meetup</a></p>
+<p><a href="https://getpocket.com/a/read/1967425863">文章：Tidyverse，學習R語言的新起點</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="e585b6e4bb96e58fafe794a8e79a84e587bde695b8.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

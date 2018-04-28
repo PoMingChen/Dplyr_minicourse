@@ -1,0 +1,40 @@
+# 挑選適當的欄位 {-}
+
+![](/Users/chenpoming/Desktop/select.png)
+
+> Select 是針對欄位(variables)做子集合
+
+> (In Help) One or more unquoted expressions separated by commas. You can treat variable names like they are positions.
+
+
+基本取法
+```{r}
+flights %>% select(year,month,day,carrier,flight,tailnum,origin,dest)
+```
+
+取連續某幾行的欄位
+```{r}
+flights %>% select(year:day,carrier:dest)
+```
+
+取特定類型（字首開頭）的欄位
+```{r}
+#use the helper with select()
+flights %>% select(year:day, starts_with("dep"), starts_with("arr"))
+flights %>% select(year:day, starts_with(), starts_with("arr"))
+```
+
+取x y z變數以外的欄位
+```{r}
+flights %>% select(-c(time_hour, carrier,tailnum))
+```
+
+### 小練習{-}
+1. 我想要看每位球員的基本資訊，以及他一共搶了多少個籃板球、幾次助攻、幾次抄截
+Hint: 變數TotalRebounds, Assists, Steals
+```{r}
+NBA1718 %>% select(League:GamesPlayed, TotalRebounds:Steals)
+```
+
+
+

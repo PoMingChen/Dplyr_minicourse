@@ -1,0 +1,27 @@
+# 敘述統計量 {-}
+
+
+![](/Users/chenpoming/Desktop/summarise.png)
+![](/Users/chenpoming/Desktop/summarise2.png)
+
+> Summary functions take `vectors as input and return one value`
+
+> (In help) `The name will be the name of the variable in the result.` The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).
+
+```{r, cache=TRUE}
+flights %>% summarise(avg_dep_delay = mean(dep_delay, na.rm = T), arr_delay_sd = sd(arr_delay, na.rm = T))
+#為什麼na.rm沒有去掉會變成NA?
+```
+
+```{r, cache=TRUE}
+flights %>% summarise(IQR_dep_delay = IQR(dep_delay, na.rm = T), max_dep_delay = max(dep_delay, na.rm = T))
+```
+
+### 小練習{-}
+1. 請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？
+```{r}
+NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(GamesPlayed))
+```
+
+
+

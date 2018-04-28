@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R_Dplyr_minicourse</title>
+  <meta name="description" content="E.Major R_Dplyr_minicourse">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R_Dplyr_minicourse" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R_Dplyr_minicourse" />
+  
+  <meta name="twitter:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+<meta name="author" content="陳柏銘">
+
+
+<meta name="date" content="2018-04-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="e69598e8bfb0e7b5b1e8a888e9878f.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.bn { color: #40a070; } /* BaseN */
+code span.fl { color: #40a070; } /* Float */
+code span.ch { color: #4070a0; } /* Char */
+code span.st { color: #4070a0; } /* String */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.ot { color: #007020; } /* Other */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.fu { color: #06287e; } /* Function */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #880000; } /* Constant */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #19177c; } /* Variable */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.op { color: #666666; } /* Operator */
+code span.bu { } /* BuiltIn */
+code span.ex { } /* Extension */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.at { color: #7d9029; } /* Attribute */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>課程規劃</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e7a88be5a4a7e7b6b1"><i class="fa fa-check"></i>課程大綱</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html"><a href="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html"><i class="fa fa-check"></i>認識環境與基本觀察</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html"><a href="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html#section-0.0.1"><i class="fa fa-check"></i><b>0.0.1</b> 引入需要用到的套件</a></li>
+<li class="chapter" data-level="0.0.2" data-path="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html"><a href="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f.html#section"><i class="fa fa-check"></i><b>0.0.2</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html"><i class="fa fa-check"></i>敘述統計量</a><ul>
+<li class="chapter" data-level="0.0.3" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html#section-0.0.3"><i class="fa fa-check"></i><b>0.0.3</b> 安裝本課程需要的套件</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><a href="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><i class="fa fa-check"></i>挑選適當的欄位</a></li>
+<li class="chapter" data-level="" data-path="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><a href="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><i class="fa fa-check"></i>篩選適當觀察值</a></li>
+<li class="chapter" data-level="" data-path="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><a href="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><i class="fa fa-check"></i>從既有變數產生新變數</a></li>
+<li class="chapter" data-level="" data-path="e59088e4bdb5e5a0b1e8a1a8.html"><a href="e59088e4bdb5e5a0b1e8a1a8.html"><i class="fa fa-check"></i>合併報表</a></li>
+<li class="chapter" data-level="" data-path="e58886e7bea4e58886e69e90.html"><a href="e58886e7bea4e58886e69e90.html"><i class="fa fa-check"></i>分群分析</a></li>
+<li class="chapter" data-level="" data-path="e68e92e5ba8fe8a780e5af9fe580bc.html"><a href="e68e92e5ba8fe8a780e5af9fe580bc.html"><i class="fa fa-check"></i>排序觀察值</a></li>
+<li class="chapter" data-level="" data-path="e58f83e88083e8b387e69699.html"><a href="e58f83e88083e8b387e69699.html"><i class="fa fa-check"></i>參考資料</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R_Dplyr_minicourse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="e8aa8de8ad98e792b0e5a283e88887e59fbae69cace8a780e5af9f" class="section level1 unnumbered">
+<h1>認識環境與基本觀察</h1>
+<div id="section-0.0.1" class="section level3">
+<h3><span class="header-section-number">0.0.1</span> 引入需要用到的套件</h3>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</div></code></pre>
+<pre><code>## ─ Attaching packages ────────────────────────────────────── tidyverse 1.2.1 ─</code></pre>
+<pre><code>## ✔ ggplot2 2.2.1     ✔ purrr   0.2.4
+## ✔ tibble  1.4.2     ✔ dplyr   0.7.4
+## ✔ tidyr   0.8.0     ✔ stringr 1.3.0
+## ✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
+<pre><code>## ─ Conflicts ─────────────────────────────────────── tidyverse_conflicts() ─
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(nycflights13)</div>
+<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(SportsAnalytics)</div>
+<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># 若無法成功，請先下載套件。</span></div></code></pre>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">0.0.2</span> </h3>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e69598e8bfb0e7b5b1e8a888e9878f.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
