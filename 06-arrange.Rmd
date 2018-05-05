@@ -1,0 +1,40 @@
+# 排序觀察值arrange()
+
+![](./graph/arrange.png)
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+```
+
+```{r, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(nycflights13)
+library(SportsAnalytics)
+fetch_NBAPlayerStatistics("17-18") -> NBA1718
+```
+
+預設是由低到高
+```{r}
+flights %>% arrange(distance)
+```
+
+加入`desc(), descending order`是由高到低
+```{r}
+flights %>% arrange(desc(distance))
+```
+
+### 小練習{-}
+1. (延續上一題）休士頓火箭隊，隊伍中前三大得分點是誰？
+
+Hint: 搭配arrange
+```{r, results='hide'}
+NBA1718 %>% filter(Team == "HOU") %>%
+            mutate(avg_points = TotalPoints/GamesPlayed) %>% 
+            select(League:GamesPlayed, avg_points) %>% 
+            arrange(desc(avg_points))
+```
+

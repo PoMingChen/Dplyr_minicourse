@@ -1,0 +1,50 @@
+# 敘述統計量Summarise()
+
+
+![](./graph/summarise.png)
+
+![](./graph/summarise2.png)
+
+> Summary functions take `vectors as input and return one value`
+
+> (the arguments (...) In Help) `The name will be the name of the variable in the result.` The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+```
+
+```{r, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(nycflights13)
+library(SportsAnalytics)
+fetch_NBAPlayerStatistics("17-18") -> NBA1718
+```
+
+```{r}
+flights %>% summarise(avg_dep_delay = mean(dep_delay), dep_delay_sd = sd(dep_delay))
+```
+
+```{r}
+#為什麼na.rm沒有加上會變成NA?
+flights %>% summarise(avg_dep_delay = mean(dep_delay, na.rm = T), dep_delay_sd = sd(dep_delay, na.rm = T))
+```
+
+```{r}
+flights %>% summarise(IQR_dep_delay = IQR(dep_delay, na.rm = T), max_dep_delay = max(dep_delay, na.rm = T))
+```
+
+### 小練習{-}
+1. 請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？
+
+Hint:上場場次，變數為GamePlayed
+
+```{r, results='hide'}
+NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(GamesPlayed))
+```
+
+
+

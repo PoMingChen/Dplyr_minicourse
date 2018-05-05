@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R_Dplyr_minicourse</title>
+  <meta name="description" content="E.Major R_Dplyr_minicourse">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R_Dplyr_minicourse" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R_Dplyr_minicourse" />
+  
+  <meta name="twitter:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+<meta name="author" content="陳柏銘PoMingChen">
+
+
+<meta name="date" content="2018-05-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="mutate.html">
+<link rel="next" href="group-by.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/clipboard/clipboard.min.js"></script>
+<link href="libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy/js/klippy.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109510055-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109510055-1');
+</script>
+
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'NTPU-Econ/minicourse-dplyr'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.bn { color: #40a070; } /* BaseN */
+code span.fl { color: #40a070; } /* Float */
+code span.ch { color: #4070a0; } /* Char */
+code span.st { color: #4070a0; } /* String */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.ot { color: #007020; } /* Other */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.fu { color: #06287e; } /* Function */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #880000; } /* Constant */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #19177c; } /* Variable */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.op { color: #666666; } /* Operator */
+code span.bu { } /* BuiltIn */
+code span.ex { } /* Extension */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.at { color: #7d9029; } /* Attribute */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 課程規劃</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e7a88be5a4a7e7b6b1"><i class="fa fa-check"></i>課程大綱</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>2</b> 環境設定與基本觀察</a><ul>
+<li class="chapter" data-level="" data-path="section-2.html"><a href="section-2.html#e5bc95e585a5e99c80e8a681e794a8e588b0e79a84e5a597e4bbb6"><i class="fa fa-check"></i>引入需要用到的套件</a></li>
+<li class="chapter" data-level="" data-path="section-2.html"><a href="section-2.html#e5bc95e585a5e8b387e69699"><i class="fa fa-check"></i>引入資料</a></li>
+<li class="chapter" data-level="" data-path="section-2.html"><a href="section-2.html#e59fbae69cace8a780e5af9fe587bde695b8"><i class="fa fa-check"></i>基本觀察函數</a></li>
+<li class="chapter" data-level="" data-path="section-2.html"><a href="section-2.html#e5b08fe7b7b4e7bf92"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="summarise.html"><a href="summarise.html"><i class="fa fa-check"></i><b>3</b> 敘述統計量Summarise()</a><ul>
+<li class="chapter" data-level="" data-path="summarise.html"><a href="summarise.html#-1"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>4</b> 挑選適當的欄位Select()</a><ul>
+<li class="chapter" data-level="" data-path="select.html"><a href="select.html#-2"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>5</b> 篩選適當觀察值filter()</a><ul>
+<li class="chapter" data-level="" data-path="filter.html"><a href="filter.html#-3"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="mutate.html"><a href="mutate.html"><i class="fa fa-check"></i><b>6</b> 從既有變數產生新變數mutate()</a><ul>
+<li class="chapter" data-level="" data-path="mutate.html"><a href="mutate.html#-4"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="arrange.html"><a href="arrange.html"><i class="fa fa-check"></i><b>7</b> 排序觀察值arrange()</a><ul>
+<li class="chapter" data-level="" data-path="arrange.html"><a href="arrange.html#-5"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="group-by.html"><a href="group-by.html"><i class="fa fa-check"></i><b>8</b> 分群分析group_by()</a><ul>
+<li class="chapter" data-level="" data-path="group-by.html"><a href="group-by.html#-6"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="join.html"><a href="join.html"><i class="fa fa-check"></i><b>9</b> 合併報表join()</a></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 參考資料</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R_Dplyr_minicourse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="arrange" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> 排序觀察值arrange()</h1>
+<p><img src="graph/arrange.png" /></p>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p>預設是由低到高</p>
+<pre class="sourceCode r" id="cb39"><code class="sourceCode r"><div class="sourceLine" id="cb39-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(distance)</div></code></pre>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+##  1  2013     7    27       NA            106     NA   
+##  2  2013     1     3     2127           2129   -  2.00
+##  3  2013     1     4     1240           1200     40.0 
+##  4  2013     1     4     1829           1615    134   
+##  5  2013     1     4     2128           2129   -  1.00
+##  6  2013     1     5     1155           1200   -  5.00
+##  7  2013     1     6     2125           2129   -  4.00
+##  8  2013     1     7     2124           2129   -  5.00
+##  9  2013     1     8     2127           2130   -  3.00
+## 10  2013     1     9     2126           2129   -  3.00
+## # ... with 336,766 more rows, and 13 more variables:
+## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>加入<code>desc(), descending order</code>是由高到低</p>
+<pre class="sourceCode r" id="cb41"><code class="sourceCode r"><div class="sourceLine" id="cb41-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(distance))</div></code></pre>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+##  1  2013     1     1      857            900  -   3.00
+##  2  2013     1     2      909            900      9.00
+##  3  2013     1     3      914            900     14.0 
+##  4  2013     1     4      900            900      0   
+##  5  2013     1     5      858            900  -   2.00
+##  6  2013     1     6     1019            900     79.0 
+##  7  2013     1     7     1042            900    102   
+##  8  2013     1     8      901            900      1.00
+##  9  2013     1     9      641            900   1301   
+## 10  2013     1    10      859            900  -   1.00
+## # ... with 336,766 more rows, and 13 more variables:
+## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<div id="-5" class="section level3 unnumbered">
+<h3>小練習</h3>
+<ol style="list-style-type: decimal">
+<li>(延續上一題）休士頓火箭隊，隊伍中前三大得分點是誰？</li>
+</ol>
+<p>Hint: 搭配arrange</p>
+<pre class="sourceCode r" id="cb43"><code class="sourceCode r"><div class="sourceLine" id="cb43-1" data-line-number="1">NBA1718 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Team <span class="op">==</span><span class="st"> &quot;HOU&quot;</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">avg_points =</span> TotalPoints<span class="op">/</span>GamesPlayed) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">            </span><span class="kw">select</span>(League<span class="op">:</span>GamesPlayed, avg_points) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(avg_points))</div></code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mutate.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="group-by.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"]
+});
+});
+</script>
+
+</body>
+
+</html>
