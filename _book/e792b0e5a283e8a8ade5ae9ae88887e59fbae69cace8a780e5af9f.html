@@ -22,10 +22,10 @@
   <meta name="twitter:description" content="E.Major R_Dplyr_minicourse" />
   
 
-<meta name="author" content="陳柏銘">
+<meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-04-28">
+<meta name="date" content="2018-04-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,13 +33,13 @@
   
   
 <link rel="prev" href="index.html">
-<link rel="next" href="e69598e8bfb0e7b5b1e8a888e9878f.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link rel="next" href="summarise.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -47,6 +47,10 @@
 
 
 
+<script src="libs/clipboard/clipboard.min.js"></script>
+<link href="libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy/js/klippy.min.js"></script>
 
 
 <style type="text/css">
@@ -116,9 +120,6 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>課程規劃</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
@@ -130,23 +131,26 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e59fbae69cace8a780e5af9fe587bde695b8"><i class="fa fa-check"></i>基本觀察函數</a></li>
 <li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e5b08fe7b7b4e7bf92"><i class="fa fa-check"></i>小練習</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html"><i class="fa fa-check"></i>敘述統計量</a><ul>
-<li class="chapter" data-level="" data-path="e69598e8bfb0e7b5b1e8a888e9878f.html"><a href="e69598e8bfb0e7b5b1e8a888e9878f.html#-1"><i class="fa fa-check"></i>小練習</a></li>
+<li class="chapter" data-level="" data-path="summarise.html"><a href="summarise.html"><i class="fa fa-check"></i>敘述統計量Summarise()</a><ul>
+<li class="chapter" data-level="" data-path="summarise.html"><a href="summarise.html#-1"><i class="fa fa-check"></i>小練習</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><a href="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><i class="fa fa-check"></i>挑選適當的欄位</a><ul>
-<li class="chapter" data-level="" data-path="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html"><a href="e68c91e981b8e981a9e795b6e79a84e6ac84e4bd8d.html#-2"><i class="fa fa-check"></i>小練習</a></li>
+<li class="chapter" data-level="" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i>挑選適當的欄位Select()</a><ul>
+<li class="chapter" data-level="" data-path="select.html"><a href="select.html#-2"><i class="fa fa-check"></i>小練習</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><a href="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><i class="fa fa-check"></i>篩選適當觀察值</a><ul>
-<li class="chapter" data-level="" data-path="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html"><a href="e7afa9e981b8e981a9e795b6e8a780e5af9fe580bc.html#-3"><i class="fa fa-check"></i>小練習</a></li>
+<li class="chapter" data-level="" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i>篩選適當觀察值filter()</a><ul>
+<li class="chapter" data-level="" data-path="filter.html"><a href="filter.html#-3"><i class="fa fa-check"></i>小練習</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><a href="e5be9ee697a2e69c89e8ae8ae695b8e794a2e7949fe696b0e8ae8ae695b8.html"><i class="fa fa-check"></i>從既有變數產生新變數</a></li>
-<li class="chapter" data-level="" data-path="e68e92e5ba8fe8a780e5af9fe580bc.html"><a href="e68e92e5ba8fe8a780e5af9fe580bc.html"><i class="fa fa-check"></i>排序觀察值</a></li>
-<li class="chapter" data-level="" data-path="e58886e7bea4e58886e69e90.html"><a href="e58886e7bea4e58886e69e90.html"><i class="fa fa-check"></i>分群分析</a></li>
-<li class="chapter" data-level="" data-path="e59088e4bdb5e5a0b1e8a1a8.html"><a href="e59088e4bdb5e5a0b1e8a1a8.html"><i class="fa fa-check"></i>合併報表</a></li>
+<li class="chapter" data-level="" data-path="mutate.html"><a href="mutate.html"><i class="fa fa-check"></i>從既有變數產生新變數mutate()</a><ul>
+<li class="chapter" data-level="" data-path="mutate.html"><a href="mutate.html#-4"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="arrange.html"><a href="arrange.html"><i class="fa fa-check"></i>排序觀察值arrange()</a><ul>
+<li class="chapter" data-level="" data-path="arrange.html"><a href="arrange.html#-5"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="group-by.html"><a href="group-by.html"><i class="fa fa-check"></i>分群分析group_by()</a><ul>
+<li class="chapter" data-level="" data-path="group-by.html"><a href="group-by.html#-6"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="join.html"><a href="join.html"><i class="fa fa-check"></i>合併報表join()</a></li>
 <li class="chapter" data-level="" data-path="e58f83e88083e8b387e69699.html"><a href="e58f83e88083e8b387e69699.html"><i class="fa fa-check"></i>參考資料</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -166,6 +170,10 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
             <section class="normal" id="section-">
 <div id="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f" class="section level1 unnumbered">
 <h1>環境設定與基本觀察</h1>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
 <div id="e5bc95e585a5e99c80e8a681e794a8e588b0e79a84e5a597e4bbb6" class="section level3 unnumbered">
 <h3>引入需要用到的套件</h3>
 <pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</div>
@@ -188,17 +196,19 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">?flights</div>
 <div class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">head</span>(flights)</div></code></pre>
 <pre><code>## # A tibble: 6 x 19
-##    year month   day dep_time sched_dep_time dep_delay arr_time
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-## 1  2013     1     1      517            515      2.00      830
-## 2  2013     1     1      533            529      4.00      850
-## 3  2013     1     1      542            540      2.00      923
-## 4  2013     1     1      544            545     -1.00     1004
-## 5  2013     1     1      554            600     -6.00      812
-## 6  2013     1     1      554            558     -4.00      740
-## # ... with 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+##    year month   day dep_time sched_dep_time dep_delay
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+## 1  2013     1     1      517            515      2.00
+## 2  2013     1     1      533            529      4.00
+## 3  2013     1     1      542            540      2.00
+## 4  2013     1     1      544            545     -1.00
+## 5  2013     1     1      554            600     -6.00
+## 6  2013     1     1      554            558     -4.00
+## # ... with 13 more variables: arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 ## #   time_hour &lt;dttm&gt;</code></pre>
 <pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">str</span>(flights)</div></code></pre>
 <pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    336776 obs. of  19 variables:
@@ -220,7 +230,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ##  $ distance      : num  1400 1416 1089 1576 762 ...
 ##  $ hour          : num  5 5 5 5 6 5 6 6 6 6 ...
 ##  $ minute        : num  15 29 40 45 0 58 0 0 0 0 ...
-##  $ time_hour     : POSIXct, format: &quot;2013-01-01 05:00:00&quot; &quot;2013-01-01 05:00:00&quot; ...</code></pre>
+##  $ time_hour     : POSIXct, format: &quot;2013-01-01 05:00:00&quot; ...</code></pre>
 </div>
 <div id="e5b08fe7b7b4e7bf92" class="section level3 unnumbered">
 <h3>小練習</h3>
@@ -237,16 +247,16 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="e69598e8bfb0e7b5b1e8a888e9878f.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summarise.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -270,10 +280,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"],
-"toc": {
-"collapse": "subsection"
-}
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"]
 });
 });
 </script>

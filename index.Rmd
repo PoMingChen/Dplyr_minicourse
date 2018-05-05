@@ -1,6 +1,6 @@
 --- 
 title: "R_Dplyr_minicourse"
-author: "陳柏銘"
+author: "陳柏銘PoMingChen"
 date: "`r Sys.Date()`"
 description: E.Major R_Dplyr_minicourse
 documentclass: ctexbook
@@ -33,7 +33,7 @@ library(showtext)
 showtext_auto()
 ```
 
-# 課程規劃 {-}  
+# 課程規劃 
 
 ## 前言 {-}   
 
@@ -47,20 +47,25 @@ Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探�
 
 1. 安裝：R and R Studio Desktop: https://www.rstudio.com  
 2. [下載dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) 
-3. [填寫簽到單](連結)
+3. 註冊[hypothes.is](https://web.hypothes.is)，並點選以下連結加入討論群：https://hypothes.is/groups/YX79arq3/minicourse-dplyr
+4. 安裝[Chrome瀏覽器](https://www.google.com/chrome/)
+5. 安裝[hypothes.is extension for Chrome](https://chrome.google.com/webstore/search/hypothesis?hl=en)
+6. 註冊[Github](https://github.com)
+7. 安裝[Github Desktop](https://desktop.github.com)
 
 ## 課程大綱 {-} 
 
-> 本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，甚至不需要這本電子書就能夠用效率的方式向Dplyr學習Dplyr。
+> 本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。
 
 以下為講解的資料整理函數(4 + 4）：
 
 - 認識資料基本資訊
+
+  - `View`、`Str`
   
 - 計算敘述統計量
 
-  - `summarise`:單變量敘述統計量(平均數、標準差、四分為差、中位數)
-  - `covariance` `correlation`: 雙變量敘述統計量
+  - `summarise`
 
 - 挑選適當的欄位
 
@@ -74,7 +79,7 @@ Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探�
 
   - `mutate`
 
-- 分群分析（我還不會ungroup和group差別）
+- 分群分析
 
   - `group`
 

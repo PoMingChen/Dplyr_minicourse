@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-2.html">
+<link rel="prev" href="section-2.html">
+<link rel="next" href="select.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -184,72 +184,43 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R_Dplyr_minicourse</h1>
-<h4 class="author"><em>陳柏銘PoMingChen</em></h4>
-<h4 class="date"><em>2018-05-03</em></h4>
-</div>
-<div id="section-1" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> 課程規劃</h1>
-<div id="e5898de8a880" class="section level2 unnumbered">
-<h2>前言</h2>
-<p>Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探索式資料分析的第一步。</p>
-<p>探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立必要變數的部分，必要時需要透過爬蟲或者引入第三方資料，才算完整。</p>
-<p>資料處理做得好，整體的分析方向和後面的統計建模才會有意義且往對的道路前進，以避免不必要的時間、資源浪費。</p>
-</div>
-<div id="e8aab2e5898de8a681e6b182" class="section level2 unnumbered">
-<h2>課前要求</h2>
-<ol style="list-style-type: decimal">
-<li>安裝：R and R Studio Desktop: <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a><br />
-</li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">下載dplyr cheatsheet</a></li>
-<li>註冊<a href="https://web.hypothes.is">hypothes.is</a>，並點選以下連結加入討論群：<a href="https://hypothes.is/groups/YX79arq3/minicourse-dplyr" class="uri">https://hypothes.is/groups/YX79arq3/minicourse-dplyr</a></li>
-<li>安裝<a href="https://www.google.com/chrome/">Chrome瀏覽器</a></li>
-<li>安裝<a href="https://chrome.google.com/webstore/search/hypothesis?hl=en">hypothes.is extension for Chrome</a></li>
-<li>註冊<a href="https://github.com">Github</a></li>
-<li>安裝<a href="https://desktop.github.com">Github Desktop</a></li>
-</ol>
-</div>
-<div id="e8aab2e7a88be5a4a7e7b6b1" class="section level2 unnumbered">
-<h2>課程大綱</h2>
+<div id="summarise" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> 敘述統計量Summarise()</h1>
+<p><img src="graph/summarise.png" /></p>
+<p><img src="graph/summarise2.png" /></p>
 <blockquote>
-<p>本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。</p>
+<p>Summary functions take <code>vectors as input and return one value</code></p>
 </blockquote>
-<p>以下為講解的資料整理函數(4 + 4）：</p>
-<ul>
-<li><p>認識資料基本資訊</p>
-<ul>
-<li><code>View</code>、<code>Str</code></li>
-</ul></li>
-<li><p>計算敘述統計量</p>
-<ul>
-<li><code>summarise</code></li>
-</ul></li>
-<li><p>挑選適當的欄位</p>
-<ul>
-<li><code>select</code></li>
-</ul></li>
-<li><p>篩選適當觀察值</p>
-<ul>
-<li><code>filter</code></li>
-</ul></li>
-<li><p>從既有變數產生新變數</p>
-<ul>
-<li><code>mutate</code></li>
-</ul></li>
-<li><p>分群分析</p>
-<ul>
-<li><code>group</code></li>
-</ul></li>
-<li><p>排序觀察值</p>
-<ul>
-<li><code>arrange</code></li>
-</ul></li>
-<li><p>合併報表</p>
-<ul>
-<li><code>join</code></li>
-</ul></li>
-</ul>
+<blockquote>
+<p>(the arguments (…) In Help) <code>The name will be the name of the variable in the result.</code> The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).</p>
+</blockquote>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg_dep_delay =</span> <span class="kw">mean</span>(dep_delay), <span class="dt">dep_delay_sd =</span> <span class="kw">sd</span>(dep_delay))</div></code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   avg_dep_delay dep_delay_sd
+##           &lt;dbl&gt;        &lt;dbl&gt;
+## 1            NA           NA</code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">#為什麼na.rm沒有加上會變成NA?</span></div>
+<div class="sourceLine" id="cb11-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> T), <span class="dt">dep_delay_sd =</span> <span class="kw">sd</span>(dep_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   avg_dep_delay dep_delay_sd
+##           &lt;dbl&gt;        &lt;dbl&gt;
+## 1          12.6         40.2</code></pre>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">IQR_dep_delay =</span> <span class="kw">IQR</span>(dep_delay, <span class="dt">na.rm =</span> T), <span class="dt">max_dep_delay =</span> <span class="kw">max</span>(dep_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   IQR_dep_delay max_dep_delay
+##           &lt;dbl&gt;         &lt;dbl&gt;
+## 1          16.0          1301</code></pre>
+<div id="-1" class="section level3 unnumbered">
+<h3>小練習</h3>
+<ol style="list-style-type: decimal">
+<li>請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？</li>
+</ol>
+<p>Hint:上場場次，變數為GamePlayed</p>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1">NBA1718 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg_GamePlayed =</span> <span class="kw">mean</span>(GamesPlayed), <span class="dt">sd_GamePlayed =</span> <span class="kw">sd</span>(GamesPlayed))</div></code></pre>
 
 </div>
 </div>
@@ -258,8 +229,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           </div>
         </div>
       </div>
-
-<a href="section-2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="select.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

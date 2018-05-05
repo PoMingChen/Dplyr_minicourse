@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-2.html">
+<link rel="prev" href="filter.html">
+<link rel="next" href="arrange.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -184,72 +184,79 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R_Dplyr_minicourse</h1>
-<h4 class="author"><em>陳柏銘PoMingChen</em></h4>
-<h4 class="date"><em>2018-05-03</em></h4>
-</div>
-<div id="section-1" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> 課程規劃</h1>
-<div id="e5898de8a880" class="section level2 unnumbered">
-<h2>前言</h2>
-<p>Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探索式資料分析的第一步。</p>
-<p>探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立必要變數的部分，必要時需要透過爬蟲或者引入第三方資料，才算完整。</p>
-<p>資料處理做得好，整體的分析方向和後面的統計建模才會有意義且往對的道路前進，以避免不必要的時間、資源浪費。</p>
-</div>
-<div id="e8aab2e5898de8a681e6b182" class="section level2 unnumbered">
-<h2>課前要求</h2>
-<ol style="list-style-type: decimal">
-<li>安裝：R and R Studio Desktop: <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a><br />
-</li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">下載dplyr cheatsheet</a></li>
-<li>註冊<a href="https://web.hypothes.is">hypothes.is</a>，並點選以下連結加入討論群：<a href="https://hypothes.is/groups/YX79arq3/minicourse-dplyr" class="uri">https://hypothes.is/groups/YX79arq3/minicourse-dplyr</a></li>
-<li>安裝<a href="https://www.google.com/chrome/">Chrome瀏覽器</a></li>
-<li>安裝<a href="https://chrome.google.com/webstore/search/hypothesis?hl=en">hypothes.is extension for Chrome</a></li>
-<li>註冊<a href="https://github.com">Github</a></li>
-<li>安裝<a href="https://desktop.github.com">Github Desktop</a></li>
-</ol>
-</div>
-<div id="e8aab2e7a88be5a4a7e7b6b1" class="section level2 unnumbered">
-<h2>課程大綱</h2>
+<div id="mutate" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> 從既有變數產生新變數mutate()</h1>
+<p><img src="graph/mutate.png" />
+<img src="graph/mutate2.png" /></p>
 <blockquote>
-<p>本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。</p>
+<p>和summary functions不同的是 : vectorized function，得到的還是一個vector(column vector)</p>
 </blockquote>
-<p>以下為講解的資料整理函數(4 + 4）：</p>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p><code>mutate</code>從既有變數中新增變數，有保留原始data.frame。</p>
+<pre class="sourceCode r" id="cb33"><code class="sourceCode r"><div class="sourceLine" id="cb33-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">total_delay =</span> dep_delay <span class="op">+</span><span class="st"> </span>arr_delay)</div></code></pre>
+<pre><code>## # A tibble: 336,776 x 20
+##     year month   day dep_time sched_dep_time dep_delay
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+##  1  2013     1     1      517            515      2.00
+##  2  2013     1     1      533            529      4.00
+##  3  2013     1     1      542            540      2.00
+##  4  2013     1     1      544            545     -1.00
+##  5  2013     1     1      554            600     -6.00
+##  6  2013     1     1      554            558     -4.00
+##  7  2013     1     1      555            600     -5.00
+##  8  2013     1     1      557            600     -3.00
+##  9  2013     1     1      557            600     -3.00
+## 10  2013     1     1      558            600     -2.00
+## # ... with 336,766 more rows, and 14 more variables:
+## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, total_delay &lt;dbl&gt;</code></pre>
+<p><code>transmute</code>從既有變數中新增變數，無保留原始data.frame。</p>
+<pre class="sourceCode r" id="cb35"><code class="sourceCode r"><div class="sourceLine" id="cb35-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transmute</span>(<span class="dt">total_delay =</span> dep_delay <span class="op">+</span><span class="st"> </span>arr_delay)</div></code></pre>
+<pre><code>## # A tibble: 336,776 x 1
+##    total_delay
+##          &lt;dbl&gt;
+##  1       13.0 
+##  2       24.0 
+##  3       35.0 
+##  4      -19.0 
+##  5      -31.0 
+##  6        8.00
+##  7       14.0 
+##  8      -17.0 
+##  9      -11.0 
+## 10        6.00
+## # ... with 336,766 more rows</code></pre>
+<div id="-4" class="section level3 unnumbered">
+<h3>小練習</h3>
+<ol style="list-style-type: decimal">
+<li>休士頓火箭隊，隊伍中本季得分王是誰？</li>
+</ol>
+<p>Hint: 每場平均得分＝本季總得分(TotalPoints)/本季出賽場次(GamesPlayed)。</p>
+<pre class="sourceCode r" id="cb37"><code class="sourceCode r"><div class="sourceLine" id="cb37-1" data-line-number="1">NBA1718 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Team <span class="op">==</span><span class="st"> &quot;HOU&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">avg_pt =</span> TotalPoints<span class="op">/</span>GamesPlayed) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(League<span class="op">:</span>Position, avg_pt)</div></code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>在聯盟中，要判斷一位球員是否是頂尖射手，會有三個指標，分別是</li>
+</ol>
 <ul>
-<li><p>認識資料基本資訊</p>
-<ul>
-<li><code>View</code>、<code>Str</code></li>
-</ul></li>
-<li><p>計算敘述統計量</p>
-<ul>
-<li><code>summarise</code></li>
-</ul></li>
-<li><p>挑選適當的欄位</p>
-<ul>
-<li><code>select</code></li>
-</ul></li>
-<li><p>篩選適當觀察值</p>
-<ul>
-<li><code>filter</code></li>
-</ul></li>
-<li><p>從既有變數產生新變數</p>
-<ul>
-<li><code>mutate</code></li>
-</ul></li>
-<li><p>分群分析</p>
-<ul>
-<li><code>group</code></li>
-</ul></li>
-<li><p>排序觀察值</p>
-<ul>
-<li><code>arrange</code></li>
-</ul></li>
-<li><p>合併報表</p>
-<ul>
-<li><code>join</code></li>
-</ul></li>
+<li>罰球命中率(FreeThrows) &gt; 90%</li>
+<li>三分球(Threes)命中率 &gt; 40%</li>
+<li>一般投籃(FieldGoals)命中率 &gt; 50%</li>
 </ul>
+<p>總共是(90+40+50 &gt;= 180)，又稱為180Club。請找出本季滿足180俱樂部的球員有誰？</p>
+<p>Hint: 若，這邊最一開始額外新增兩個標準，出賽場次&gt;50場，每場三分球至少出手一次。</p>
+<p>Hint: 需要模仿上面練習一的方式，創造命中率的新變數，再把三個新變數相加(若沒有轉成百分比，最後是&gt;=1.8)做比較。</p>
+<p>Hint: 善用Tab鍵補齊（這樣變數不用自己完整打完）。</p>
+<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1">NBA1718 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(GamesPlayed <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ThreesAttempted<span class="op">/</span>GamesPlayed <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">Free_percent =</span> FreeThrowsMade<span class="op">/</span>FreeThrowsAttempted, </div>
+<div class="sourceLine" id="cb38-3" data-line-number="3">                   <span class="dt">FieldGoal_percent =</span> FieldGoalsMade<span class="op">/</span>FieldGoalsAttempted, </div>
+<div class="sourceLine" id="cb38-4" data-line-number="4">                   <span class="dt">Three_percent =</span> ThreesMade<span class="op">/</span>ThreesAttempted) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">shootingstar =</span> Free_percent <span class="op">+</span><span class="st"> </span>FieldGoal_percent <span class="op">+</span><span class="st"> </span>Three_percent) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">            </span><span class="kw">filter</span>(shootingstar <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.8</span>)</div></code></pre>
 
 </div>
 </div>
@@ -258,8 +265,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           </div>
         </div>
       </div>
-
-<a href="section-2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="filter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="arrange.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

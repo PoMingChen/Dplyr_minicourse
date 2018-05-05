@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="section-2.html">
+<link rel="prev" href="arrange.html">
+<link rel="next" href="join.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -184,72 +184,64 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R_Dplyr_minicourse</h1>
-<h4 class="author"><em>陳柏銘PoMingChen</em></h4>
-<h4 class="date"><em>2018-05-03</em></h4>
-</div>
-<div id="section-1" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> 課程規劃</h1>
-<div id="e5898de8a880" class="section level2 unnumbered">
-<h2>前言</h2>
-<p>Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探索式資料分析的第一步。</p>
-<p>探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立必要變數的部分，必要時需要透過爬蟲或者引入第三方資料，才算完整。</p>
-<p>資料處理做得好，整體的分析方向和後面的統計建模才會有意義且往對的道路前進，以避免不必要的時間、資源浪費。</p>
-</div>
-<div id="e8aab2e5898de8a681e6b182" class="section level2 unnumbered">
-<h2>課前要求</h2>
-<ol style="list-style-type: decimal">
-<li>安裝：R and R Studio Desktop: <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a><br />
-</li>
-<li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">下載dplyr cheatsheet</a></li>
-<li>註冊<a href="https://web.hypothes.is">hypothes.is</a>，並點選以下連結加入討論群：<a href="https://hypothes.is/groups/YX79arq3/minicourse-dplyr" class="uri">https://hypothes.is/groups/YX79arq3/minicourse-dplyr</a></li>
-<li>安裝<a href="https://www.google.com/chrome/">Chrome瀏覽器</a></li>
-<li>安裝<a href="https://chrome.google.com/webstore/search/hypothesis?hl=en">hypothes.is extension for Chrome</a></li>
-<li>註冊<a href="https://github.com">Github</a></li>
-<li>安裝<a href="https://desktop.github.com">Github Desktop</a></li>
-</ol>
-</div>
-<div id="e8aab2e7a88be5a4a7e7b6b1" class="section level2 unnumbered">
-<h2>課程大綱</h2>
+<div id="group_by" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> 分群分析group_by()</h1>
+<p><img src="graph/group_by.png" /></p>
 <blockquote>
-<p>本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。</p>
+<p>(In cheatsheet) <code>group_by</code> returns <code>copy of table</code> grouped by…so the original table will not disappear. You may assign the <code>group_by table</code> to a new R objecct.</p>
 </blockquote>
-<p>以下為講解的資料整理函數(4 + 4）：</p>
-<ul>
-<li><p>認識資料基本資訊</p>
-<ul>
-<li><code>View</code>、<code>Str</code></li>
-</ul></li>
-<li><p>計算敘述統計量</p>
-<ul>
-<li><code>summarise</code></li>
-</ul></li>
-<li><p>挑選適當的欄位</p>
-<ul>
-<li><code>select</code></li>
-</ul></li>
-<li><p>篩選適當觀察值</p>
-<ul>
-<li><code>filter</code></li>
-</ul></li>
-<li><p>從既有變數產生新變數</p>
-<ul>
-<li><code>mutate</code></li>
-</ul></li>
-<li><p>分群分析</p>
-<ul>
-<li><code>group</code></li>
-</ul></li>
-<li><p>排序觀察值</p>
-<ul>
-<li><code>arrange</code></li>
-</ul></li>
-<li><p>合併報表</p>
-<ul>
-<li><code>join</code></li>
-</ul></li>
-</ul>
+<script>
+  addClassKlippyTo("pre.r, pre.markdown");
+  addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
+</script>
+<p>用group_by函數看看哪一家航空公司的平均起飛（和抵達）延遲最嚴重？</p>
+<pre class="sourceCode r" id="cb44"><code class="sourceCode r"><div class="sourceLine" id="cb44-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">            </span><span class="kw">summarise</span>(<span class="dt">avg_dep_delay=</span><span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> T), <span class="dt">avg_arr_delay=</span><span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
+<pre><code>## # A tibble: 16 x 3
+##    carrier avg_dep_delay avg_arr_delay
+##    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 9E              16.7          7.38 
+##  2 AA               8.59         0.364
+##  3 AS               5.80       - 9.93 
+##  4 B6              13.0          9.46 
+##  5 DL               9.26         1.64 
+##  6 EV              20.0         15.8  
+##  7 F9              20.2         21.9  
+##  8 FL              18.7         20.1  
+##  9 HA               4.90       - 6.92 
+## 10 MQ              10.6         10.8  
+## 11 OO              12.6         11.9  
+## 12 UA              12.1          3.56 
+## 13 US               3.78         2.13 
+## 14 VX              12.9          1.76 
+## 15 WN              17.7          9.65 
+## 16 YV              19.0         15.6</code></pre>
+<p>可以設定多個分組依據，好比說我想要知道<code>航空公司</code>哪些<code>航班路線(Flight number)</code>通常比較容易遇到延遲？</p>
+<pre class="sourceCode r" id="cb46"><code class="sourceCode r"><div class="sourceLine" id="cb46-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier, flight) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">            </span><span class="kw">summarise</span>(<span class="dt">avg_dep_delay=</span><span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> T), <span class="dt">avg_arr_delay=</span><span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
+<pre><code>## # A tibble: 5,725 x 4
+## # Groups:   carrier [?]
+##    carrier flight avg_dep_delay avg_arr_delay
+##    &lt;chr&gt;    &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+##  1 9E        2900         11.9          0.983
+##  2 9E        2901         15.5         15.8  
+##  3 9E        2902          7.77         1.87 
+##  4 9E        2903         22.6          7.34 
+##  5 9E        2904         20.5         12.2  
+##  6 9E        2905          7.00       - 8.38 
+##  7 9E        2906         22.3         14.5  
+##  8 9E        2907         13.2          5.30 
+##  9 9E        2908         25.7         17.7  
+## 10 9E        2909         12.0        - 1.00 
+## # ... with 5,715 more rows</code></pre>
+<div id="-6" class="section level3 unnumbered">
+<h3>小練習</h3>
+<ol style="list-style-type: decimal">
+<li>(延續上一題）休士頓火箭隊，各個守備位置各有多少人？</li>
+</ol>
+<p>Hint: <code>隊</code>、<code>守備位置</code>是兩個分組條件</p>
+<p>Hint: 計算row（或者說樣本個數），可以用n(), number of values/rows，請參考summary function on dplyr cheatsheet</p>
+<pre class="sourceCode r" id="cb48"><code class="sourceCode r"><div class="sourceLine" id="cb48-1" data-line-number="1">NBA1718 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Team, Position) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">nPlayer =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Team <span class="op">==</span><span class="st"> &quot;HOU&quot;</span>)</div></code></pre>
 
 </div>
 </div>
@@ -258,8 +250,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           </div>
         </div>
       </div>
-
-<a href="section-2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="arrange.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="join.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
