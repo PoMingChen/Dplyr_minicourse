@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R_Dplyr_minicourse</title>
+  <meta name="description" content="E.Major R_Dplyr_minicourse">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R_Dplyr_minicourse" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R_Dplyr_minicourse" />
+  
+  <meta name="twitter:description" content="E.Major R_Dplyr_minicourse" />
+  
+
+<meta name="author" content="陳柏銘PoMingChen">
+
+
+<meta name="date" content="2018-04-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="join.html">
+
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/clipboard/clipboard.min.js"></script>
+<link href="libs/primer-tooltips/build.css" rel="stylesheet" />
+<link href="libs/klippy/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy/js/klippy.min.js"></script>
+
+
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.bn { color: #40a070; } /* BaseN */
+code span.fl { color: #40a070; } /* Float */
+code span.ch { color: #4070a0; } /* Char */
+code span.st { color: #4070a0; } /* String */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.ot { color: #007020; } /* Other */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.fu { color: #06287e; } /* Function */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #880000; } /* Constant */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #19177c; } /* Variable */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.op { color: #666666; } /* Operator */
+code span.bu { } /* BuiltIn */
+code span.ex { } /* Extension */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.at { color: #7d9029; } /* Attribute */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>課程規劃</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e7a88be5a4a7e7b6b1"><i class="fa fa-check"></i>課程大綱</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><i class="fa fa-check"></i>環境設定與基本觀察</a><ul>
+<li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e5bc95e585a5e99c80e8a681e794a8e588b0e79a84e5a597e4bbb6"><i class="fa fa-check"></i>引入需要用到的套件</a></li>
+<li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e5bc95e585a5e8b387e69699"><i class="fa fa-check"></i>引入資料</a></li>
+<li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e59fbae69cace8a780e5af9fe587bde695b8"><i class="fa fa-check"></i>基本觀察函數</a></li>
+<li class="chapter" data-level="" data-path="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html"><a href="e792b0e5a283e8a8ade5ae9ae88887e59fbae69cace8a780e5af9f.html#e5b08fe7b7b4e7bf92"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summarise.html"><a href="summarise.html"><i class="fa fa-check"></i>敘述統計量Summarise()</a><ul>
+<li class="chapter" data-level="" data-path="summarise.html"><a href="summarise.html#-1"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i>挑選適當的欄位Select()</a><ul>
+<li class="chapter" data-level="" data-path="select.html"><a href="select.html#-2"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i>篩選適當觀察值filter()</a><ul>
+<li class="chapter" data-level="" data-path="filter.html"><a href="filter.html#-3"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mutate.html"><a href="mutate.html"><i class="fa fa-check"></i>從既有變數產生新變數mutate()</a><ul>
+<li class="chapter" data-level="" data-path="mutate.html"><a href="mutate.html#-4"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="arrange.html"><a href="arrange.html"><i class="fa fa-check"></i>排序觀察值arrange()</a><ul>
+<li class="chapter" data-level="" data-path="arrange.html"><a href="arrange.html#-5"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="group-by.html"><a href="group-by.html"><i class="fa fa-check"></i>分群分析group_by()</a><ul>
+<li class="chapter" data-level="" data-path="group-by.html"><a href="group-by.html#-6"><i class="fa fa-check"></i>小練習</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="join.html"><a href="join.html"><i class="fa fa-check"></i>合併報表join()</a></li>
+<li class="chapter" data-level="" data-path="e58f83e88083e8b387e69699.html"><a href="e58f83e88083e8b387e69699.html"><i class="fa fa-check"></i>參考資料</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R_Dplyr_minicourse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="e58f83e88083e8b387e69699" class="section level1 unnumbered">
+<h1>參考資料</h1>
+<p><a href="https://bookdown.org/tpemartin/dplyr_intro/section-1.html">林茂廷老師dplyr用書</a></p>
+<p><a href="http://r4ds.had.co.nz/introduction.html">r4ds</a></p>
+<p><a href="https://yijutseng.github.io/DataScienceRBook/">長庚大學資管系大數據分析方法課程教學用書</a></p>
+<p><a href="https://www.meetup.com/Taiwan-R/">推薦活動：Taiwan R user group meetup</a></p>
+<p><a href="https://getpocket.com/a/read/1967425863">推薦文章：Tidyverse，學習R語言的新起點</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="join.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"]
+});
+});
+</script>
+
+</body>
+
+</html>
