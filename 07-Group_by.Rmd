@@ -22,7 +22,7 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 用group_by函數看看哪一家航空公司的平均起飛（和抵達）延遲最嚴重？
 ```{r}
 flights %>% group_by(carrier) %>% 
-            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T))
+            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T)) %>% arrange(desc(avg_dep_delay))
 
 ```
 
