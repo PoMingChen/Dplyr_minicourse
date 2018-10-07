@@ -35,6 +35,9 @@ NBA1718
 ?flights
 head(flights)
 str(flights)
+?mtcars
+mtcars
+?dplyr
 ```
 
 ### 小練習{-}
