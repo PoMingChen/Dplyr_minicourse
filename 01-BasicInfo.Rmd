@@ -9,8 +9,9 @@ klippy::klippy()
 ```
 
 ### 引入需要用到的套件{-}
-```{r}
-library(tidyverse)
+```{r warning=FALSE}
+#library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
@@ -18,7 +19,7 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 # 我們只要觀察2017-2018球季的資料。
 ```
 
-### 引入資料{-}
+#### 引入資料{-}
 ```{r, results='hide'}
 flights
 NBA1718
@@ -30,28 +31,65 @@ NBA1718
 
 基本上四大資料型態有`numeric(數值)`，`interger(整數)`，`character(字串)`，`logic(布林變數)`。
 
-這邊要介紹兩個常用的函數：`head()` `str()`
+這邊一共要介紹：`?`、`head()` 、`str()`、`rename`
+
+`?`的功能與RStudio介面中，直接查詢Help是一樣的。基本上包含套件、函數、資料集都可以查詢。
 ```{r}
 ?flights
-head(flights)
-str(flights)
-?mtcars
-mtcars
 ?dplyr
+```
+
+`head`函數會顯示資料集的前六筆資料。
+```{r}
+head(flights)
+```
+
+`str`函數則是以條列式來概覽整個資料集。
+```{r}
+str(flights)
+```
+
+`rename`，可以將更改變數名稱，增加易讀性，不然有時候變數名稱很長。
+```{r}
+#新變數名稱（放左邊）= 舊的變數名稱
+flights %>% rename(total_distance = distance)
+```
+
+### 範例{-}
+
+1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
+```{r, eval=FALSE}
+str(NBA1718)
+```
+
+2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started比較舒服。
+```{r, eval=FALSE}
+NBA1718 %>% rename(Games_Started = GamesStarted)
 ```
 
 ### 小練習{-}
 
-1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
-2. Steve Adams本季出賽場次為幾場？
-```{r, results='hide'}
-str(NBA1718)
+> 若完成，請直接貼到open chat
+
+1. 請用`?`查詢他是一個怎麼樣的資料集？
+2. 請用`str`或者`head`函數，觀察他哪些資料型態的變數較多？
+3. 請用`rename`更改變數hp，變成horsepower
+
+```{r, eval=FALSE}
+mtcars
 ```
 
-```{r, results='hide'}
-head(NBA1718)
+
+
+```{r, echo=FALSE,include=FALSE}
+?mtcars
 ```
 
+```{r, echo=FALSE,include=FALSE}
+str(mtcars)
+```
 
-
+```{r, echo=FALSE,include=FALSE}
+mtcars %>% rename(horsepower = hp)
+```
 
