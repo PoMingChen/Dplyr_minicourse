@@ -24,7 +24,10 @@ library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-記得要幫你的`summarise`後的結果，取一個變數名稱。這邊是avg_dep_delay。
+
+1. summarise
+> 記得要幫你的`summarise`後的結果，取一個變數名稱。這邊是avg_dep_delay。
+
 ```{r}
 flights %>% summarise(avg_dep_delay = mean(dep_delay), dep_delay_sd = sd(dep_delay))
 ```
@@ -38,12 +41,14 @@ flights %>% summarise(dep_delay_mean = mean(dep_delay, na.rm = T),
                       arr_delay_sd = sd(arr_delay, na.rm = T))
 ```
 
-`summarise_at`意思就是指定幾個變數進行summarise，如果遇到很多個變數的話，會比較方便。
+2. `summarise_at`意思就是指定幾個變數進行summarise，如果遇到很多個變數的話，會比較方便。
 ```{r}
 #vars，本身是variables的意思，就是要挑哪幾個變數
 #funs，本身是functions的意思，就是要執行哪些summary function
 flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
 ```
+
+3. 上面兩者的結果一樣嗎？
 
 ### 範例{-}
 請問NBA 2017-2018球季，
@@ -64,7 +69,7 @@ NBA1718 %>% summarise_at(vars(GamesPlayed), funs(mean, sd))
 
 > 若完成，請直接貼到open chat
 
-1. 請問mtcars資料集內，這些車子平均有多少汽缸數（cyl, cylinders)，以及平均有幾匹馬力(hp, Gross horsepower)
+1. 若你是一位賣車的菜鳥業務，為了要知道各車款的優劣勢，想先了解一下這些車，平均有多少汽缸數（cyl, cylinders)，平均有幾匹馬力(hp, Gross horsepower)，你會怎麼做？
 
 > filter，可以過濾哪一牌的車子，它的性能表現是否比計算出來的平均馬力數還要好，arrange，可以做最後想買哪一台？
 
@@ -74,13 +79,5 @@ mtcars
 
 ```{r, echo=FALSE,include=FALSE}
 mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
-```
-
-```{r, echo=FALSE,include=FALSE}
-
-```
-
-```{r, echo=FALSE,include=FALSE}
-
 ```
 
