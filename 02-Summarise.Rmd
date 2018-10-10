@@ -5,9 +5,9 @@
 
 ![](./graph/summarise2.png)
 
-> Summary functions take `vectors as input and return one value`
+> Summary functions take `vectors as input and return one value`，意思就是他會精煉出一個值，可能是某一個變數的平均數等。
 
-> (the arguments (...) In Help) `The name will be the name of the variable in the result.` The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).
+#### 介紹兩種用法，summarise/summarise_at{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -18,33 +18,69 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
+記得要幫你的`summarise`後的結果，取一個變數名稱。這邊是avg_dep_delay。
 ```{r}
 flights %>% summarise(avg_dep_delay = mean(dep_delay), dep_delay_sd = sd(dep_delay))
 ```
 
-```{r}
+```{r, warning=FALSE}
 #為什麼na.rm沒有加上會變成NA?
-flights %>% summarise(avg_dep_delay = mean(dep_delay, na.rm = T), dep_delay_sd = sd(dep_delay, na.rm = T))
+#na.rm本身是什麼意思？
+flights %>% summarise(dep_delay_mean = mean(dep_delay, na.rm = T),
+                      arr_delay_mean = mean(arr_delay, na.rm = T),
+                      dep_delay_sd = sd(dep_delay, na.rm = T),
+                      arr_delay_sd = sd(arr_delay, na.rm = T))
 ```
 
+`summarise_at`意思就是指定幾個變數進行summarise，如果遇到很多個變數的話，會比較方便。
 ```{r}
-flights %>% summarise(IQR_dep_delay = IQR(dep_delay, na.rm = T), max_dep_delay = max(dep_delay, na.rm = T))
+#vars，本身是variables的意思，就是要挑哪幾個變數
+#funs，本身是functions的意思，就是要執行哪些summary function
+flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
+```
+
+### 範例{-}
+請問NBA 2017-2018球季，
+1. 全體球員平均上場場次為幾場？標準差多少？(上場場次，變數為GamePlayed)
+
+2. 全體球員平均上場打幾分鐘球賽？標準差多少？(上場場次，變數為GamePlayed)
+
+```{r, eval=FALSE}
+NBA1718 %>% summarise(GamePlayed_mean = mean(GamesPlayed, na.rm = T), 
+                         GamePlayed_sd = sd(GamesPlayed, na.rm = T))
+```
+
+```{r eval=FALSE}
+NBA1718 %>% summarise_at(vars(GamesPlayed), funs(mean, sd))
 ```
 
 ### 小練習{-}
-1. 請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？
 
-Hint:上場場次，變數為GamePlayed
+> 若完成，請直接貼到open chat
 
-```{r, results='hide'}
-NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(GamesPlayed))
+1. 請問mtcars資料集內，這些車子平均有多少汽缸數（cyl, cylinders)，以及平均有幾匹馬力(hp, Gross horsepower)
+
+> filter，可以過濾哪一牌的車子，它的性能表現是否比計算出來的平均馬力數還要好，arrange，可以做最後想買哪一台？
+
+```{r, eval=FALSE}
+mtcars
 ```
 
+```{r, echo=FALSE,include=FALSE}
+mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
+```
 
+```{r, echo=FALSE,include=FALSE}
+
+```
+
+```{r, echo=FALSE,include=FALSE}
+
+```
 
