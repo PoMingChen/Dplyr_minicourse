@@ -69,6 +69,11 @@ NBA1718 %>% select(League:Position, TotalRebounds,Steals)
 
 1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？
 
+```{r}
+mtcars
+```
+
+
 ```{r, eval=FALSE}
 mtcars %>% select(mpg, hp)
 ```
