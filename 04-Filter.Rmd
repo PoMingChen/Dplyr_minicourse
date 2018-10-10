@@ -2,7 +2,7 @@
 
 ![](./graph/filter.png)
 
-> filter 是針對列(row)做子集合，或者說尋找滿足特定條件的資料點。
+#### filter 是針對列(row)，或者說樣本(sample)，做子集合，目的是尋找滿足特定條件的資料點{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -13,46 +13,66 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-基本用法
-```{r}
-#資料集中有336776筆資料
-#UA 這家航空公司有58665筆資料
-flights %>% filter(carrier == c("UA"))
+1. 基本用法
+```{r, warning=FALSE}
+flights %>% filter(month==1, day==2)
 ```
 
-加入logical and boolean operators
+2. 加入logical and boolean operators
+
+> 眾多logical and boolean operators，請參考cheatsheet
+
 ```{r}
-flights %>% filter(carrier == "UA", dep_delay <= 20 & arr_delay <= 20)
+flights %>% filter(dep_delay <= 20 & arr_delay <= 20)
 ```
 
-做變數計算並作為篩選條件
+3. 做變數計算並作為篩選條件
 ```{r}
-flights %>% filter(carrier == "UA", dep_delay + arr_delay <= 30)
+flights %>% filter(dep_delay + arr_delay <= 30)
+```
+
+4. 看起來比較特別的%in%，是什麼？
+```{r}
+#基本理解是：是否出現該字眼，或者説是否包含於。
+#在字串變數(character)的挑選，以及其他字串操作上很常用
+flights %>% filter(carrier %in% c("UA","US"), dep_delay + arr_delay <= 30)
+```
+
+### 範例{-}
+
+1. 延續上一題，若該位總管，除了重視防守之外，他也很重視球員耐戰程度，假設整個球季上場就過2500分鐘可以視為高耐戰族群，要怎麼做才能知道有哪些球員？
+
+```{r, results='hide'}
+NBA1718 %>% select(League:Position, 
+                   TotalMinutesPlayed, 
+                   TotalRebounds,Steals) %>%
+            filter(TotalMinutesPlayed > 2500)
 ```
 
 ### 小練習{-}
 
-1.誰是本季聯盟高耐戰力群？
+> 若完成，請直接貼到open chat
 
-（標準：出賽場次超過2800分鐘，想法是其全勤也要2800/82 = 34分鐘以上）
-```{r, results='hide'}
-NBA1718 %>% filter(TotalMinutesPlayed > 2800)
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+```{r, eval=FALSE}
+mtcars
 ```
 
-2. 休士頓火箭隊本季一共登錄幾名球員？誰應該是該隊的固定先發五人？
-
-Hint: HOU, Houston Rockets
-
-Hint: GamesStarted/GamesPlayed > 0.75
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU")  %>% filter(GamesStarted/GamesPlayed > 0.75)
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp) %>% filter(hp > mean(hp, na.rm = T))
 ```
+
+
+
 
 
 
