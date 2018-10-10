@@ -3,6 +3,9 @@
 ![](./graph/mutate.png)
 ![](./graph/mutate2.png)
 
+#### mutate/transmute，以及mutate+select組合技{-}
+
+
 > 和summary functions不同的是 : vectorized function，得到的還是一個vector(column vector)
 
 ```{r, include=FALSE}
@@ -14,50 +17,55 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-`mutate`從既有變數中新增變數，有保留原始data.frame。
-```{r}
+1. `mutate`從既有變數中新增變數，有保留原始data.frame。
+```{r, warning=FALSE}
 flights %>% mutate(total_delay = dep_delay + arr_delay)
 ```
 
-`transmute`從既有變數中新增變數，無保留原始data.frame。
+2. `transmute`從既有變數中新增變數，無保留原始data.frame。
 ```{r}
 flights %>% transmute(total_delay = dep_delay + arr_delay)
 ```
 
-### 小練習{-}
-1. 休士頓火箭隊，隊伍中本季得分王是誰？
-
-Hint: 每場平均得分＝本季總得分(TotalPoints)/本季出賽場次(GamesPlayed)。
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt)
+3. 要怎麼讓新產生的變數，排列到適當的相對位置，不然老是在最右邊？(mutate+select組合技)
+```{r}
+#我想要讓total_delay，排在arr_delay的旁邊
+flights %>% mutate(total_delay = dep_delay + arr_delay) %>% 
+            select(year:arr_delay, total_delay, everything())
 ```
 
-2. 在聯盟中，要判斷一位球員是否是頂尖射手，會有三個指標，分別是
-- 罰球命中率(FreeThrows) > 90%
-- 三分球(Threes)命中率 > 40%
-- 一般投籃(FieldGoals)命中率 > 50%
 
-總共是(90+40+50 >= 180)，又稱為180Club。請找出本季滿足180俱樂部的球員有誰？
-
-Hint: 若，這邊最一開始額外新增兩個標準，出賽場次>50場，每場三分球至少出手一次。
-
-Hint: 需要模仿上面練習一的方式，創造命中率的新變數，再把三個新變數相加(若沒有轉成百分比，最後是>=1.8)做比較。
-
-Hint: 善用Tab鍵補齊（這樣變數不用自己完整打完）。
+### 範例{-}
+1. 休士頓火箭隊，隊伍中，本季每個人的場均得分(本季總得分(TotalPoints)/本季出賽場次(GamesPlayed))是多少？
 
 ```{r, results='hide'}
-NBA1718 %>% filter(GamesPlayed >= 50, ThreesAttempted/GamesPlayed > 1) %>%
-            mutate(Free_percent = FreeThrowsMade/FreeThrowsAttempted, 
-                   FieldGoal_percent = FieldGoalsMade/FieldGoalsAttempted, 
-                   Three_percent = ThreesMade/ThreesAttempted) %>% 
-            mutate(shootingstar = Free_percent + FieldGoal_percent + Three_percent) %>%
-            filter(shootingstar >= 1.8)
+NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt, everything())
+```
+
+### 小練習{-}
+
+> 若完成，請直接貼到open chat
+
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+3. 假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？
+
+```{r, eval=FALSE}
+mtcars
+```
+
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp) %>% 
+           filter(hp > mean(hp, na.rm = T)) %>% 
+           mutate(good_cars = mpg*10 + hp)
 ```
 
 
