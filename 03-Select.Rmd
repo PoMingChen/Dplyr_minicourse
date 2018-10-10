@@ -58,7 +58,7 @@ flights %>% select(everything())
 ```
 
 ### 範例{-}
-1. 若我是一名重視防守的球隊總管，我想要概覽一下聯盟中誰防守比較好。我需要其名字(Name)、所屬隊伍(Team)、守備位置(Position)， 他搶了幾個籃板球(TotalRebounds),有幾次抄球 (Steals)
+1. 若有一名球隊總管，很重視防守，他想要概覽一下聯盟中誰防守比較好。我需要其名字(Name)、所屬隊伍(Team)、守備位置(Position)， 他搶了幾個籃板球(TotalRebounds),有幾次抄球 (Steals)
 ```{r, results='hide'}
 NBA1718 %>% select(League:Position, TotalRebounds,Steals)
 ```
@@ -70,10 +70,8 @@ NBA1718 %>% select(League:Position, TotalRebounds,Steals)
 1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？
 
 ```{r, eval=FALSE}
-mtcars
+mtcars %>% select(mpg, hp)
 ```
 
-```{r, echo=FALSE,include=FALSE}
-?mtcars
-```
+
 
