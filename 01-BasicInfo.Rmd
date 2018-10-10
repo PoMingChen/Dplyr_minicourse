@@ -33,23 +33,23 @@ NBA1718
 
 這邊一共要介紹：`?`、`head()` 、`str()`、`rename`
 
-`?`的功能與RStudio介面中，直接查詢Help是一樣的。基本上包含套件、函數、資料集都可以查詢。
+1. `?`的功能與RStudio介面中，直接查詢Help是一樣的。基本上包含套件、函數、資料集都可以查詢。
 ```{r}
 ?flights
 ?dplyr
 ```
 
-`head`函數會顯示資料集的前六筆資料。
+2. `head`函數會顯示資料集的前六筆資料。
 ```{r}
 head(flights)
 ```
 
-`str`函數則是以條列式來概覽整個資料集。
+3. `str`函數則是以條列式來概覽整個資料集。
 ```{r}
 str(flights)
 ```
 
-`rename`，可以將更改變數名稱，增加易讀性，不然有時候變數名稱很長。
+4. `rename`，可以將更改變數名稱，增加易讀性，不然有時候變數名稱很長。
 ```{r}
 #新變數名稱（放左邊）= 舊的變數名稱
 flights %>% rename(total_distance = distance)
@@ -78,8 +78,6 @@ NBA1718 %>% rename(Games_Started = GamesStarted)
 ```{r, eval=FALSE}
 mtcars
 ```
-
-
 
 ```{r, echo=FALSE,include=FALSE}
 ?mtcars
