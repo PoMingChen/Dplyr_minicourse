@@ -2,7 +2,7 @@
 
 ![](./graph/arrange.png)
 
-#### 遞增排序，以及遞減排序
+#### 遞增排序，以及遞減排序{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
