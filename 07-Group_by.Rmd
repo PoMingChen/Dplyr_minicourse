@@ -2,7 +2,9 @@
 
 ![](./graph/group_by.png)
 
+#### 分群分析與群內排序{-}
 
+> `group_by()`函數會由原本資料集產生一個新的分群過的資料集，通常會與`summarise`函數一起運用。可以直接理解為group by certain variable。
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -19,37 +21,38 @@ library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-1. 用group_by函數看看哪一家航空公司的平均起飛延遲最嚴重？
-```{r}
+1. 用group_by函數看看「哪一家航空公司(carrier)」的「平均起飛延遲」最嚴重？
+```{r, warning=FALSE}
 flights %>% group_by(carrier) %>% 
             summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
             arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
 ```
   
-2. 可以設定多個分組依據，好比說我想要知道`航空公司`哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？
+2. 可以設定多個分組依據
 ```{r}
+# 我想要知道個別`航空公司(carrier) `，哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？
 flights %>% group_by(carrier, flight) %>% 
             summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
             arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
 ```
 
-3. 我想要知道1~12月份，各月份的哪一天航班平均起飛延遲最嚴重？（group_by + arrange組合技）
+3. 我想要知道1~12月份，「各月份」的「每一天」，航班「平均起飛延遲」嚴重程度？（group_by + arrange組合技）
 ```{r}
-#請查詢Help，重點是arrange函數裡面的 .by_group 參數
+#意思就是，群內（或者說組內）排序怎麼做？
+#請查詢 Help，重點是arrange函數裡面的 .by_group 參數
 flights %>% group_by(month, day) %>% 
             summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
             arrange(desc(dep_delay), .by_group = T)
 
-#那要怎麼進一步撈出各個月的起飛延誤前三名呢？是不是filter_at/filter_if?
+#那要怎麼進一步撈出各個月各天的起飛延誤前三名呢？是不是filter_at/filter_if?
 ```
 
 ### 範例{-}
 
 1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
 
-Hint: `隊`、`守備位置`是兩個分組條件
-
-Hint: 計算row（或者說樣本個數），可以用n(), number of values/rows，請參考summary function on dplyr cheatsheet
+> 1. 隊(Team)、守備位置(Position)是兩個分組條件<br>
+  2. 計算row（或者說樣本個數），可以用n(), number of values/rows，可參考dplyr cheatsheet
 
 ```{r, results='hide'}
 NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
