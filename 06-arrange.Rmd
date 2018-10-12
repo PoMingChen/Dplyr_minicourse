@@ -2,6 +2,8 @@
 
 ![](./graph/arrange.png)
 
+#### 遞增排序，以及遞減排序
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
 ```
@@ -28,8 +30,7 @@ flights %>% arrange(desc(dep_delay))
 ```
 
 ### 範例{-}
-1. (延續上一題）休士頓火箭隊，隊伍中前三大得分點是誰？
-
+1. 休士頓火箭隊，隊伍中前三大得分點是誰？
 
 ```{r, results='hide'}
 NBA1718 %>% filter(Team == "HOU") %>%
