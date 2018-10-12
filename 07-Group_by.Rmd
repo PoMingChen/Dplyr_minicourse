@@ -2,7 +2,7 @@
 
 ![](./graph/group_by.png)
 
-> (In cheatsheet) `group_by` returns `copy of table` grouped by...so the original table will not disappear. You may assign the `group_by table` to a new R objecct.
+
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -13,26 +13,37 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-用group_by函數看看哪一家航空公司的平均起飛（和抵達）延遲最嚴重？
+1. 用group_by函數看看哪一家航空公司的平均起飛延遲最嚴重？
 ```{r}
 flights %>% group_by(carrier) %>% 
-            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T)) %>% arrange(desc(avg_dep_delay))
-
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
 ```
-
-可以設定多個分組依據，好比說我想要知道`航空公司`哪些`航班路線(Flight number)`通常比較容易遇到延遲？
+  
+2. 可以設定多個分組依據，好比說我想要知道`航空公司`哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？
 ```{r}
 flights %>% group_by(carrier, flight) %>% 
-            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T))
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
 ```
 
-### 小練習{-}
+3. 我想要知道1~12月份，各月份的哪一天航班平均起飛延遲最嚴重？（group_by + arrange組合技）
+```{r}
+#請查詢Help，重點是arrange函數裡面的 .by_group 參數
+flights %>% group_by(month, day) %>% 
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay), .by_group = T)
+
+#那要怎麼進一步撈出各個月的起飛延誤前三名呢？是不是filter_at/filter_if?
+```
+
+### 範例{-}
 
 1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
 
@@ -44,6 +55,27 @@ Hint: 計算row（或者說樣本個數），可以用n(), number of values/rows
 NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
 ```
 
+### 小練習{-}
+
+> 若完成，請直接貼到open chat
+
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+3. 假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？
+
+4. 要成交前，該位買家因為莫名原因心情好，決定要買他挑選標準該數據的前三名，請問你應該給他哪三台車的最終報價？
+
+5. 服務完這位客戶後，發現自己累積了不少經驗，也留意到汽缸數多寡與馬力有一定關聯性，閒來之餘想要整理一下相同汽缸數下，不同車款的馬力比較表作為往後參考，請問該怎麼做？
+
+```{r, eval=FALSE}
+mtcars
+```
+
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% group_by(cyl) %>% arrange(desc(hp), .by_group = T)
+```
 
 
 
