@@ -27,7 +27,7 @@ NBA1718
 
 ### 基本觀察函數{-}
 
-在「探索式資料分析」我們一定會需要去認識資料型態（Data type)，以及變數本身定義（涉及到Domain Knowledge）。
+在「探索式資料分析」我們一定會需要去認識資料型態（Data type)，以及變數本身定義（The Domain）。
 
 基本上四大資料型態有`numeric(數值)`，`interger(整數)`，`character(字串)`，`logic(布林變數)`。
 
