@@ -30,16 +30,6 @@ flights %>% arrange(desc(dep_delay))
 ```
 
 ### 範例{-}
-1. 休士頓火箭隊，隊伍中前三大得分點是誰？
-
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU") %>%
-            mutate(avg_points = TotalPoints/GamesPlayed) %>% 
-            select(League:GamesPlayed, avg_points) %>% 
-            arrange(desc(avg_points))
-```
-
-### 小練習{-}
 
 > 若完成，請直接貼到open chat
 
@@ -61,3 +51,14 @@ mtcars %>% select(mpg, hp) %>%
            mutate(good_cars = mpg*10 + hp) %>% 
            arrange(desc(good_cars))
 ```
+
+### 自主練習{-}
+1. 休士頓火箭隊，隊伍中前三大得分點是誰？
+
+```{r, eval=FALSE, echo=FALSE}
+NBA1718 %>% filter(Team == "HOU") %>%
+            mutate(avg_points = TotalPoints/GamesPlayed) %>% 
+            select(League:GamesPlayed, avg_points) %>% 
+            arrange(desc(avg_points))
+```
+
