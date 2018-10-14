@@ -51,27 +51,10 @@ flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
 3. 上面兩者的結果一樣嗎？
 
 ### 範例{-}
-請問NBA 2017-2018球季，
-1. 全體球員平均上場場次為幾場？標準差多少？(上場場次，變數為GamePlayed)
-
-2. 全體球員平均上場打幾分鐘球賽？標準差多少？(上場場次，變數為GamePlayed)
-
-```{r, eval=FALSE}
-NBA1718 %>% summarise(GamePlayed_mean = mean(GamesPlayed, na.rm = T), 
-                         GamePlayed_sd = sd(GamesPlayed, na.rm = T))
-```
-
-```{r eval=FALSE}
-NBA1718 %>% summarise_at(vars(GamesPlayed), funs(mean, sd))
-```
-
-### 小練習{-}
 
 > 若完成，請直接貼到open chat
 
 1. 若你是一位賣車的菜鳥業務，為了要知道各車款的優劣勢，想先了解一下這些車，平均有多少汽缸數（cyl, cylinders)，平均有幾匹馬力(hp, Gross horsepower)，你會怎麼做？
-
-> filter，可以過濾哪一牌的車子，它的性能表現是否比計算出來的平均馬力數還要好，arrange，可以做最後想買哪一台？
 
 ```{r, eval=FALSE}
 mtcars
@@ -80,4 +63,14 @@ mtcars
 ```{r, echo=FALSE,include=FALSE}
 mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
 ```
+
+### 自主練習{-}
+請問NBA 2017-2018球季，
+
+1. 全體球員平均上場場次為幾場？標準差多少？(上場場次，變數為GamePlayed)
+
+```{r eval=FALSE, include=FALSE}
+NBA1718 %>% summarise_at(vars(GamesPlayed), funs(mean, sd))
+```
+
 
