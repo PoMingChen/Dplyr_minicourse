@@ -40,15 +40,7 @@ flights %>% mutate(total_delay = dep_delay + arr_delay) %>%
             select(year:arr_delay, total_delay, everything())
 ```
 
-
 ### 範例{-}
-1. 休士頓火箭隊，隊伍中，本季每個人的場均得分(本季總得分(TotalPoints)/本季出賽場次(GamesPlayed))是多少？
-
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt, everything())
-```
-
-### 小練習{-}
 
 > 若完成，請直接貼到open chat
 
@@ -68,7 +60,13 @@ mtcars %>% select(mpg, hp) %>%
            mutate(good_cars = mpg*10 + hp)
 ```
 
+### 自主練習{-}
 
+1. 休士頓火箭隊，隊伍中，本季每個人的場均得分(本季總得分(TotalPoints)/本季出賽場次(GamesPlayed))是多少？
+
+```{r, echo = FALSE, eval=FALSE}
+NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt, everything())
+```
 
 
 
