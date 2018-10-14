@@ -20,7 +20,6 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
 
-
 1. 基本取法
 ```{r}
 #若我想看每一個航班的基本資料，包含起飛與目的地
@@ -58,25 +57,26 @@ flights %>% select(everything())
 ```
 
 ### 範例{-}
-1. 若有一名球隊總管，很重視防守，他想要概覽一下聯盟中誰防守比較好。我需要其名字(Name)、所屬隊伍(Team)、守備位置(Position)， 他搶了幾個籃板球(TotalRebounds),有幾次抄球 (Steals)
-```{r, results='hide'}
-NBA1718 %>% select(League:Position, TotalRebounds,Steals)
-```
-
-### 小練習{-}
 
 > 若完成，請直接貼到open chat
 
 1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？
 
-```{r}
+```{r, eval=FALSE}
 mtcars
 ```
 
-
-```{r, eval=FALSE}
+```{r, echo=FALSE,include=FALSE}
 mtcars %>% select(mpg, hp)
 ```
+
+### 自主練習{-}
+1. 若有一名球隊總管，很重視防守，他想要概覽一下聯盟中誰防守比較好。需要其名字(Name)、所屬隊伍(Team)、守備位置(Position)， 他搶了幾個籃板球(TotalRebounds),有幾次抄球 (Steals)，請問應該怎麼撈資料？
+
+```{r, echo=FALSE,include=FALSE}
+NBA1718 %>% select(League:Position, TotalRebounds,Steals)
+```
+
 
 
 
