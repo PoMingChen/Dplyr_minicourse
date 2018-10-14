@@ -82,11 +82,11 @@ mtcars %>% rename(horsepower = hp)
 ### 自主練習{-}
 
 1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
-```{r, eval=FALSE}
+```{r, eval=FALSE,echo=FALSE}
 str(NBA1718)
 ```
 
-2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started比較舒服。
-```{r, eval=FALSE}
+2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started較佳，請問該怎麼做？
+```{r, eval=FALSE,echo=FALSE}
 NBA1718 %>% rename(Games_Started = GamesStarted)
 ```
