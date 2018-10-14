@@ -57,18 +57,6 @@ flights %>% rename(total_distance = distance)
 
 ### 範例{-}
 
-1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
-```{r, eval=FALSE}
-str(NBA1718)
-```
-
-2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started比較舒服。
-```{r, eval=FALSE}
-NBA1718 %>% rename(Games_Started = GamesStarted)
-```
-
-### 小練習{-}
-
 > 若完成，請直接貼到open chat
 
 1. 請用`?`查詢他是一個怎麼樣的資料集？
@@ -91,3 +79,14 @@ str(mtcars)
 mtcars %>% rename(horsepower = hp)
 ```
 
+### 自主練習{-}
+
+1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
+```{r, eval=FALSE}
+str(NBA1718)
+```
+
+2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started比較舒服。
+```{r, eval=FALSE}
+NBA1718 %>% rename(Games_Started = GamesStarted)
+```
