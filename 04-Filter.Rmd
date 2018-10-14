@@ -2,7 +2,7 @@
 
 ![](./graph/filter.png)
 
-#### filter 是針對列(row)，或者說樣本(sample)，做子集合，目的是尋找滿足特定條件的資料點{-}
+#### filter 是針對列(row)，或者說觀察值(obervations)，做子集合，目的是尋找滿足特定條件的資料點{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -46,17 +46,6 @@ flights %>% filter(carrier %in% c("UA","US"), dep_delay + arr_delay <= 30)
 
 ### 範例{-}
 
-1. 延續上一題，若該位總管，除了重視防守之外，他也很重視球員耐戰程度，假設整個球季上場就過2500分鐘可以視為高耐戰族群，要怎麼做才能知道有哪些球員？
-
-```{r, results='hide'}
-NBA1718 %>% select(League:Position, 
-                   TotalMinutesPlayed, 
-                   TotalRebounds,Steals) %>%
-            filter(TotalMinutesPlayed > 2500)
-```
-
-### 小練習{-}
-
 > 若完成，請直接貼到open chat
 
 1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
@@ -71,12 +60,13 @@ mtcars
 mtcars %>% select(mpg, hp) %>% filter(hp > mean(hp, na.rm = T))
 ```
 
+### 自主練習{-}
 
+1. 延續上一題，若該位總管，除了重視防守之外，他也很重視球員耐戰程度，假設整個球季上場就過2500分鐘可以視為高耐戰族群，要怎麼做才能知道有哪些球員？
 
-
-
-
-
-
-
-
+```{r, echo=FALSE, eval=FALSE}
+NBA1718 %>% select(League:Position, 
+                   TotalMinutesPlayed, 
+                   TotalRebounds,Steals) %>%
+            filter(TotalMinutesPlayed > 2500)
+```
