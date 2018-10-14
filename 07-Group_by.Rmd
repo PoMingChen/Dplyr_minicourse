@@ -49,17 +49,6 @@ flights %>% group_by(month, day) %>%
 
 ### 範例{-}
 
-1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
-
-> 1. 隊(Team)、守備位置(Position)是兩個分組條件<br>
-  2. 計算row（或者說樣本個數），可以用n(), number of values/rows，可參考dplyr cheatsheet
-
-```{r, results='hide'}
-NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
-```
-
-### 小練習{-}
-
 > 若完成，請直接貼到open chat
 
 1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
@@ -80,6 +69,16 @@ mtcars
 mtcars %>% group_by(cyl) %>% arrange(desc(hp), .by_group = T)
 ```
 
+### 自主練習{-}
+
+1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
+
+> 1. 隊(Team)、守備位置(Position)是兩個分組條件<br>
+  2. 計算row（或者說樣本個數），可以用n(), number of values/rows，可參考dplyr cheatsheet
+
+```{r, eval=FALSE,include=FALSE}
+NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
+```
 
 
 
