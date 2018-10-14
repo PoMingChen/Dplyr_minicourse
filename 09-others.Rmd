@@ -2,7 +2,7 @@
 
 ![](./graph/gather&spread.png)
 
-#### 行列互相轉換gather()/spread(){-}
+### 行列互相轉換gather()/spread(){-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -31,11 +31,11 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 library(tidyr)
 ```
 
-3. gather()
+#### gather() {-}
 
 > gather()函數會將許多欄位變數(column, or variables)，轉化成列(row, or obervations)。<br> 重要參數說明 :<br>
-1. key：為原本的欄位變數，其轉換為新的row obervation後，命名該新增欄位的名稱。<br>
-2. value：為原本的欄位變數的觀察值(obervations)，命名其新欄位的名字<br>
+1. key：為「原本的欄位變數」，其轉換為row obervation後，命名該新增欄位的名稱。<br>
+2. value：為「原本的欄位變數」的觀察值(obervations)，命名其新欄位的名字。<br>
 
 請問這兩段程式碼結果有什麼不同？（請用css或者數量方法的開合）
 ```{r}
@@ -44,36 +44,38 @@ flights %>% select(year:day, dep_delay)
 
 ```{r}
 flights %>% select(year:day, dep_delay) %>% 
-            gather(dep_delay, key = "departure", value = "number")
-
+            gather(dep_delay, key = "departure_delay", value = "number")
 ```
 
-### 範例{-}
-
-1. 延續上一題，若該位總管，除了重視防守之外，他也很重視球員耐戰程度，假設整個球季上場就過2500分鐘可以視為高耐戰族群，要怎麼做才能知道有哪些球員？
+#### spread() {-}
 
 ```{r, results='hide'}
-NBA1718 %>% select(League:Position, 
-                   TotalMinutesPlayed, 
-                   TotalRebounds,Steals) %>%
-            filter(TotalMinutesPlayed > 2500)
+#先另存成一個新物件方便後續操作。
+flights %>% select(year:day, dep_delay) %>% 
+            gather(dep_delay, key = "departure_delay", value = "number") -> flights1
 ```
 
-### 小練習{-}
+> 基本上spread()與gather()，目的相反。將列(row, or obervations)，轉化成欄位變數(column, or variables) <br> 重要參數說明 :<br>
+1. key：挑選要將哪一個欄位變數「其obversation內容」轉換為「新欄位變數」，新欄位名稱即為原本的obervation內容。<br>
+2. value：挑選要將哪一個欄位變數「其obversation內容」設定為新產生的欄位變數的內容。<br>
 
-> 若完成，請直接貼到open chat
+1. 下列兩段程式碼有什麼不同？哪一個可以運作成功？
 
-1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+> 使用spread的過程中，如果要轉成欄位的該觀測值(obervations)，沒有某一個欄位變數可以一對一對應的話(be unique)，轉換就會失敗。所以可以新增一行unique index column。
 
-2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+相關資料參考[^1]
 
 ```{r, eval=FALSE}
-mtcars
+flights1 %>% spread(key = departure_delay, value = number)
 ```
 
-```{r, eval=FALSE,include=FALSE}
-mtcars %>% select(mpg, hp) %>% filter(hp > mean(hp, na.rm = T))
+```{r}
+flights1 %>% group_by(departure_delay) %>% mutate(grouped_id = row_number()) %>%
+  spread(departure_delay, number) %>% select(-grouped_id)
 ```
+
+
+[^1]:[Workaround for tidyr::spread with duplicate row identifiers on R-bloggers](https://www.r-bloggers.com/workaround-for-tidyrspread-with-duplicate-row-identifiers/)
 
 
 
