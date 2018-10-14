@@ -37,7 +37,7 @@ library(tidyr)
 1. key：為「原本的欄位變數」，其轉換為row obervation後，命名該新增欄位的名稱。<br>
 2. value：為「原本的欄位變數」的觀察值(obervations)，命名其新欄位的名字。<br>
 
-請問這兩段程式碼結果有什麼不同？（請用css或者數量方法的開合）
+請問這兩段程式碼結果有什麼不同？
 ```{r}
 flights %>% select(year:day, dep_delay)
 ```
