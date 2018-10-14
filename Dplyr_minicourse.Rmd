@@ -61,7 +61,7 @@ Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探�
 
 - 認識資料基本資訊
 
-  - `View`、`Str`
+  - `head`、`Str`、`rename`、`?`
   
 - 計算敘述統計量
 
@@ -79,17 +79,17 @@ Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探�
 
   - `mutate`
 
-- 分群分析
-
-  - `group`
-
 - 排序觀察值
 
   - `arrange`
   
-- 合併報表
+- 分群分析
 
-  - `join`
+  - `group_by`
+  
+- 其他、
+
+  - `gather/spread`
 
 <!--chapter:end:index.Rmd-->
 
@@ -104,8 +104,9 @@ klippy::klippy()
 ```
 
 ### 引入需要用到的套件{-}
-```{r}
-library(tidyverse)
+```{r warning=FALSE}
+#library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
@@ -113,7 +114,7 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 # 我們只要觀察2017-2018球季的資料。
 ```
 
-### 引入資料{-}
+#### 引入資料{-}
 ```{r, results='hide'}
 flights
 NBA1718
@@ -125,28 +126,65 @@ NBA1718
 
 基本上四大資料型態有`numeric(數值)`，`interger(整數)`，`character(字串)`，`logic(布林變數)`。
 
-這邊要介紹兩個常用的函數：`head()` `str()`
+這邊一共要介紹：`?`、`head()` 、`str()`、`rename`
+
+1. `?`的功能與RStudio介面中，直接查詢Help是一樣的。基本上包含套件、函數、資料集都可以查詢。
 ```{r}
 ?flights
+?dplyr
+```
+
+2. `head`函數會顯示資料集的前六筆資料。
+```{r}
 head(flights)
+```
+
+3. `str`函數則是以條列式來概覽整個資料集。
+```{r}
 str(flights)
 ```
 
-### 小練習{-}
+4. `rename`，可以將更改變數名稱，增加易讀性，不然有時候變數名稱很長。
+```{r}
+#新變數名稱（放左邊）= 舊的變數名稱
+flights %>% rename(total_distance = distance)
+```
+
+### 範例{-}
+
+> 若完成，請直接貼到open chat
+
+1. 請用`?`查詢他是一個怎麼樣的資料集？
+2. 請用`str`或者`head`函數，觀察他哪些資料型態的變數較多？
+3. 請用`rename`更改變數hp，變成horsepower
+
+```{r, eval=FALSE}
+mtcars
+```
+
+```{r, echo=FALSE,include=FALSE}
+?mtcars
+```
+
+```{r, echo=FALSE,include=FALSE}
+str(mtcars)
+```
+
+```{r, echo=FALSE,include=FALSE}
+mtcars %>% rename(horsepower = hp)
+```
+
+### 自主練習{-}
 
 1. 請問(NBA1718)這個資料集裡面哪一種Data Type最多？
-2. Steve Adams本季出賽場次為幾場？
-```{r, results='hide'}
+```{r, eval=FALSE,echo=FALSE}
 str(NBA1718)
 ```
 
-```{r, results='hide'}
-head(NBA1718)
+2. 其中一個變數，GamesStarted，是指該球員先發場次，我覺得把它改成Games_Started較佳，請問該怎麼做？
+```{r, eval=FALSE,echo=FALSE}
+NBA1718 %>% rename(Games_Started = GamesStarted)
 ```
-
-
-
-
 
 <!--chapter:end:01-BasicInfo.Rmd-->
 
@@ -157,9 +195,9 @@ head(NBA1718)
 
 ![](./graph/summarise2.png)
 
-> Summary functions take `vectors as input and return one value`
+> Summary functions take `vectors as input and return one value`，意思就是他會精煉出一個值，可能是某一個變數的平均數等。
 
-> (the arguments (...) In Help) `The name will be the name of the variable in the result.` The value should be an expression that returns a single value like min(x), n(), or sum(is.na(y)).
+#### 介紹兩種用法，summarise/summarise_at{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -170,34 +208,60 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
+
+1. summarise
+> 記得要幫你的`summarise`後的結果，取一個變數名稱。這邊是avg_dep_delay。
+
 ```{r}
 flights %>% summarise(avg_dep_delay = mean(dep_delay), dep_delay_sd = sd(dep_delay))
 ```
 
-```{r}
+```{r, warning=FALSE}
 #為什麼na.rm沒有加上會變成NA?
-flights %>% summarise(avg_dep_delay = mean(dep_delay, na.rm = T), dep_delay_sd = sd(dep_delay, na.rm = T))
+#na.rm本身是什麼意思？
+flights %>% summarise(dep_delay_mean = mean(dep_delay, na.rm = T),
+                      arr_delay_mean = mean(arr_delay, na.rm = T),
+                      dep_delay_sd = sd(dep_delay, na.rm = T),
+                      arr_delay_sd = sd(arr_delay, na.rm = T))
 ```
 
+2. `summarise_at`意思就是指定幾個變數進行summarise，如果遇到很多個變數的話，會比較方便。
 ```{r}
-flights %>% summarise(IQR_dep_delay = IQR(dep_delay, na.rm = T), max_dep_delay = max(dep_delay, na.rm = T))
+#vars，本身是variables的意思，就是要挑哪幾個變數
+#funs，本身是functions的意思，就是要執行哪些summary function
+flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
 ```
 
-### 小練習{-}
-1. 請問NBA 2017-2018球季，全體球員平均上場場次為幾場？標準差多少？
+3. 上面兩者的結果一樣嗎？
 
-Hint:上場場次，變數為GamePlayed
+### 範例{-}
 
-```{r, results='hide'}
-NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(GamesPlayed))
+> 若完成，請直接貼到open chat
+
+1. 若你是一位賣車的菜鳥業務，為了要知道各車款的優劣勢，想先了解一下這些車，平均有多少汽缸數（cyl, cylinders)，平均有幾匹馬力(hp, Gross horsepower)，你會怎麼做？
+
+```{r, eval=FALSE}
+mtcars
 ```
 
+```{r, echo=FALSE,include=FALSE}
+mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
+```
+
+### 自主練習{-}
+請問NBA 2017-2018球季，
+
+1. 全體球員平均上場場次為幾場？標準差多少？(上場場次，變數為GamePlayed)
+
+```{r eval=FALSE, include=FALSE}
+NBA1718 %>% summarise_at(vars(GamesPlayed), funs(mean, sd))
+```
 
 
 
@@ -207,7 +271,7 @@ NBA1718 %>% summarise(avg_GamePlayed = mean(GamesPlayed), sd_GamePlayed = sd(Gam
 
 ![](./graph/select.png)
 
-> Select 是針對欄位(variables)做子集合
+#### Select 是針對欄位(variables)做子集合{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -218,40 +282,71 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-基本取法
+
+1. 基本取法
 ```{r}
+#若我想看每一個航班的基本資料，包含起飛與目的地
 flights %>% select(year,month,day,carrier,flight,tailnum,origin,dest)
 ```
 
-取連續某幾行的欄位
+2. 取連續某幾行的欄位
 ```{r}
-flights %>% select(year:day,carrier:origin)
+#跟上面的寫法，有什麼異同？
+flights %>% select(year:day,carrier:dest)
 ```
 
-取特定類型（字首開頭）的欄位
+3. 取特定類型的欄位
 ```{r}
-#use the helper with select() in cheatsheet
-flights %>% select(starts_with("dep"), starts_with("arr"))
+#若我有想看有關起飛與抵達的資料，contains()，就能派上用場，當然也有其他內容，請參考cheatsheet
+flights %>% select(contains("dep"), contains("arr"))
 ```
 
-取x y z變數以外的欄位
+4. 去掉某些變數(drop certain variables)
 ```{r}
-flights %>% select(-c(time_hour, carrier,tailnum))
+#若我留意有些變數，對後續分析沒有幫助...
+flights %>% select(-c(time_hour))
 ```
 
-### 小練習{-}
-1. 我想要看每位球員的基本資訊(名字、所屬隊伍、守備位置)，以及他一共搶了多少個籃板球、幾次助攻、幾次抄截?
-
-Hint: 變數分別是 TotalRebounds, Assists, Steals
-```{r, results='hide'}
-NBA1718 %>% select(League:Position, TotalRebounds:Steals)
+```{r}
+#一次可以去掉多個變數嗎？
+flights %>% select(-c(time_hour,tailnum,flight))
 ```
+
+5. everthing()
+```{r}
+#everything()，意思是all variables的意思。
+#稍等與mutate()一起使用可以提升資料整理的效率性。
+flights %>% select(everything())
+```
+
+### 範例{-}
+
+> 若完成，請直接貼到open chat
+
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？
+
+```{r, eval=FALSE}
+mtcars
+```
+
+```{r, echo=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp)
+```
+
+### 自主練習{-}
+
+1. 若有一名球隊總管，很重視防守，他想要概覽一下聯盟中誰防守比較好。需要其名字(Name)、所屬隊伍(Team)、守備位置(Position)， 他搶了幾個籃板球(TotalRebounds),有幾次抄球 (Steals)，請問應該怎麼撈資料？
+
+```{r, echo=FALSE,include=FALSE}
+NBA1718 %>% select(League:Position, TotalRebounds,Steals)
+```
+
 
 
 
@@ -262,7 +357,7 @@ NBA1718 %>% select(League:Position, TotalRebounds:Steals)
 
 ![](./graph/filter.png)
 
-> filter 是針對列(row)做子集合，或者說尋找滿足特定條件的資料點。
+#### filter 是針對列(row)，或者說觀察值(obervations)，做子集合，目的是尋找滿足特定條件的資料點{-}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -273,54 +368,63 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-基本用法
+1. 基本用法
+```{r, warning=FALSE}
+flights %>% filter(month==1, day==2)
+```
+
+2. 加入logical and boolean operators
+
+> 眾多logical and boolean operators，請參考cheatsheet
+
 ```{r}
-#資料集中有336776筆資料
-#UA 這家航空公司有58665筆資料
-flights %>% filter(carrier == c("UA"))
+flights %>% filter(dep_delay <= 20 & arr_delay <= 20)
 ```
 
-加入logical and boolean operators
+3. 做變數計算並作為篩選條件
 ```{r}
-flights %>% filter(carrier == "UA", dep_delay <= 20 & arr_delay <= 20)
+flights %>% filter(dep_delay + arr_delay <= 30)
 ```
 
-做變數計算並作為篩選條件
+4. 看起來比較特別的%in%，是什麼？
 ```{r}
-flights %>% filter(carrier == "UA", dep_delay + arr_delay <= 30)
+#基本理解是：是否出現該字眼，或者説是否包含於。
+#在字串變數(character)的挑選，以及其他字串操作上很常用
+flights %>% filter(carrier %in% c("UA","US"), dep_delay + arr_delay <= 30)
 ```
 
-### 小練習{-}
+### 範例{-}
 
-1.誰是本季聯盟高耐戰力群？
+> 若完成，請直接貼到open chat
 
-（標準：出賽場次超過2800分鐘，想法是其全勤也要2800/82 = 34分鐘以上）
-```{r, results='hide'}
-NBA1718
-NBA1718 %>% filter(TotalMinutesPlayed > 2800)
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+```{r, eval=FALSE}
+mtcars
 ```
 
-2. 休士頓火箭隊本季一共登錄幾名球員？誰應該是該隊的固定先發五人？
-
-Hint: HOU, Houston Rockets
-
-Hint: GamesStarted/GamesPlayed > 0.75
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU")  %>% filter(GamesStarted/GamesPlayed > 0.75)
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp) %>% filter(hp > mean(hp, na.rm = T))
 ```
 
+### 自主練習{-}
 
+1. 延續上一題，若該位總管，除了重視防守之外，他也很重視球員耐戰程度，假設整個球季上場就過2500分鐘可以視為高耐戰族群，要怎麼做才能知道有哪些球員？
 
-
-
-
-
+```{r, echo=FALSE, eval=FALSE}
+NBA1718 %>% select(League:Position, 
+                   TotalMinutesPlayed, 
+                   TotalRebounds,Steals) %>%
+            filter(TotalMinutesPlayed > 2500)
+```
 
 <!--chapter:end:04-Filter.Rmd-->
 
@@ -328,6 +432,9 @@ NBA1718 %>% filter(Team == "HOU")  %>% filter(GamesStarted/GamesPlayed > 0.75)
 
 ![](./graph/mutate.png)
 ![](./graph/mutate2.png)
+
+#### mutate/transmute，以及mutate+select組合技{-}
+
 
 > 和summary functions不同的是 : vectorized function，得到的還是一個vector(column vector)
 
@@ -340,53 +447,56 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-`mutate`從既有變數中新增變數，有保留原始data.frame。
-```{r}
+1. `mutate`從既有變數中新增變數，有保留原始data.frame。
+```{r, warning=FALSE}
 flights %>% mutate(total_delay = dep_delay + arr_delay)
 ```
 
-`transmute`從既有變數中新增變數，無保留原始data.frame。
+2. `transmute`從既有變數中新增變數，無保留原始data.frame。
 ```{r}
 flights %>% transmute(total_delay = dep_delay + arr_delay)
 ```
 
-### 小練習{-}
-1. 休士頓火箭隊，隊伍中本季得分王是誰？
-
-Hint: 每場平均得分＝本季總得分(TotalPoints)/本季出賽場次(GamesPlayed)。
-```{r, results='hide'}
-NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt)
+3. 要怎麼讓新產生的變數，排列到適當的相對位置，不然老是在最右邊？(mutate+select組合技)
+```{r}
+#我想要讓total_delay，排在arr_delay的旁邊
+flights %>% mutate(total_delay = dep_delay + arr_delay) %>% 
+            select(year:arr_delay, total_delay, everything())
 ```
 
-2. 在聯盟中，要判斷一位球員是否是頂尖射手，會有三個指標，分別是
-- 罰球命中率(FreeThrows) > 90%
-- 三分球(Threes)命中率 > 40%
-- 一般投籃(FieldGoals)命中率 > 50%
+### 範例{-}
 
-總共是(90+40+50 >= 180)，又稱為180Club。請找出本季滿足180俱樂部的球員有誰？
+> 若完成，請直接貼到open chat
 
-Hint: 若，這邊最一開始額外新增兩個標準，出賽場次>50場，每場三分球至少出手一次。
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
 
-Hint: 需要模仿上面練習一的方式，創造命中率的新變數，再把三個新變數相加(若沒有轉成百分比，最後是>=1.8)做比較。
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
 
-Hint: 善用Tab鍵補齊（這樣變數不用自己完整打完）。
+3. 假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？
 
-```{r, results='hide'}
-NBA1718 %>% filter(GamesPlayed >= 50, ThreesAttempted/GamesPlayed > 1) %>%
-            mutate(Free_percent = FreeThrowsMade/FreeThrowsAttempted, 
-                   FieldGoal_percent = FieldGoalsMade/FieldGoalsAttempted, 
-                   Three_percent = ThreesMade/ThreesAttempted) %>% 
-            mutate(shootingstar = Free_percent + FieldGoal_percent + Three_percent) %>%
-            filter(shootingstar >= 1.8)
+```{r, eval=FALSE}
+mtcars
 ```
 
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp) %>% 
+           filter(hp > mean(hp, na.rm = T)) %>% 
+           mutate(good_cars = mpg*10 + hp)
+```
 
+### 自主練習{-}
+
+1. 休士頓火箭隊，隊伍中，本季每個人的場均得分(本季總得分(TotalPoints)/本季出賽場次(GamesPlayed))是多少？
+
+```{r, echo = FALSE, eval=FALSE}
+NBA1718 %>% filter(Team == "HOU") %>% mutate(avg_pt = TotalPoints/GamesPlayed) %>% select(League:Position, avg_pt, everything())
+```
 
 
 
@@ -397,6 +507,8 @@ NBA1718 %>% filter(GamesPlayed >= 50, ThreesAttempted/GamesPlayed > 1) %>%
 
 ![](./graph/arrange.png)
 
+#### 遞增排序，以及遞減排序{-}
+
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
 ```
@@ -406,27 +518,49 @@ klippy::klippy()
 ```
 
 ```{r, include=FALSE}
-library(tidyverse)
+library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
-預設是由低到高
-```{r}
-flights %>% arrange(distance)
+1.預設是由低到高
+```{r, warning=FALSE}
+flights %>% arrange(dep_delay)
 ```
 
-加入`desc(), descending order`是由高到低
+2. 加入`desc()`， descending order是遞減，由高到低
 ```{r}
-flights %>% arrange(desc(distance))
+flights %>% arrange(desc(dep_delay))
 ```
 
-### 小練習{-}
-1. (延續上一題）休士頓火箭隊，隊伍中前三大得分點是誰？
+### 範例{-}
 
-Hint: 搭配arrange
-```{r, results='hide'}
+> 若完成，請直接貼到open chat
+
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+3. 假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？
+
+4. 要成交前，該位買家因為莫名原因心情好，決定要買他挑選標準該數據的前三名，請問你應該給他哪三台車的最終報價？
+
+```{r, eval=FALSE}
+mtcars
+```
+
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% select(mpg, hp) %>% 
+           filter(hp > mean(hp, na.rm = T)) %>% 
+           mutate(good_cars = mpg*10 + hp) %>% 
+           arrange(desc(good_cars))
+```
+
+### 自主練習{-}
+1. 休士頓火箭隊，隊伍中前三大得分點是誰？
+
+```{r, eval=FALSE, echo=FALSE}
 NBA1718 %>% filter(Team == "HOU") %>%
             mutate(avg_points = TotalPoints/GamesPlayed) %>% 
             select(League:GamesPlayed, avg_points) %>% 
@@ -440,79 +574,9 @@ NBA1718 %>% filter(Team == "HOU") %>%
 
 ![](./graph/group_by.png)
 
-> (In cheatsheet) `group_by` returns `copy of table` grouped by...so the original table will not disappear. You may assign the `group_by table` to a new R objecct.
+#### 分群分析與群內排序{-}
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=FALSE)
-```
-
-```{r, echo=FALSE, include=TRUE}
-klippy::klippy()
-```
-
-```{r, include=FALSE}
-library(tidyverse)
-library(nycflights13)
-library(SportsAnalytics)
-fetch_NBAPlayerStatistics("17-18") -> NBA1718
-```
-
-用group_by函數看看哪一家航空公司的平均起飛（和抵達）延遲最嚴重？
-```{r}
-flights %>% group_by(carrier) %>% 
-            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T))
-
-```
-
-可以設定多個分組依據，好比說我想要知道`航空公司`哪些`航班路線(Flight number)`通常比較容易遇到延遲？
-```{r}
-flights %>% group_by(carrier, flight) %>% 
-            summarise(avg_dep_delay=mean(dep_delay, na.rm = T), avg_arr_delay=mean(arr_delay, na.rm = T))
-```
-
-### 小練習{-}
-
-1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
-
-Hint: `隊`、`守備位置`是兩個分組條件
-
-Hint: 計算row（或者說樣本個數），可以用n(), number of values/rows，請參考summary function on dplyr cheatsheet
-
-```{r, results='hide'}
-NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
-```
-
-
-
-
-
-
-
-<!--chapter:end:07-Group_by.Rmd-->
-
-# 合併報表join()
-
-![](./graph/join1.png)
-
-![](./graph/join2.png)
-
-![](./graph/join3.png)
-
-合併data.frame主要可以以column（欄位，變數）角度進行合併，也可以用row（列，觀察值）的角度進行合併。
-
-在兩個資料表以上，或像是爬蟲完畢的資料，彙整進來有時候需要合併報表，才算是完整清理完畢，並進入下一階段。這邊只簡單示範幾個常用的函數與參數。
-
-> (`by` argument In Help) a character vector of variables to join by. If NULL, the default, *_join() will do a natural join, using all variables with common names (共同的變數名)  across the two tables.  (`米字符號＊`是left/right/inner的意思)
-
-- `left_join()`: 以第一個參數x為基準(x資料表裡面的觀測值會全部保留)，將y合併進入x。
-
-- `right_join()`: 以第二個參數y為基準，將x合併進入y (y資料表裡面的觀測值會全部保留)。
-
-- `inner_join()`: 如果沒有設定`by`，函數會比較x,y資料表共同有的變數，然後取兩者相符的列。
-
-- `full-join()`: 會保留所有的觀測值。
-
-> `row`的合併在cheatsheet上比較直觀且清楚，不進行示範。
+> `group_by()`函數會由原本資料集產生一個新的分群過的資料集，通常會與`summarise`函數一起運用。可以直接理解為group by certain variable。
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE)
@@ -524,35 +588,166 @@ klippy::klippy()
 
 ```{r, include=FALSE}
 library(dplyr)
+library(nycflights13)
+library(SportsAnalytics)
+fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
+1. 用group_by函數看看「哪一家航空公司(carrier)」的「平均起飛延遲」最嚴重？
+```{r, warning=FALSE}
+flights %>% group_by(carrier) %>% 
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
+```
+  
+2. 可以設定多個分組依據
+```{r}
+# 我想要知道個別`航空公司(carrier) `，哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？
+flights %>% group_by(carrier, flight) %>% 
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
+```
+
+3. 我想要知道1~12月份，「各月份」的「每一天」，航班「平均起飛延遲」嚴重程度？（group_by + arrange組合技）
+```{r}
+#意思就是，群內（或者說組內）排序怎麼做？
+#請查詢 Help，重點是arrange函數裡面的 .by_group 參數
+flights %>% group_by(month, day) %>% 
+            summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
+            arrange(desc(dep_delay), .by_group = T)
+
+#那要怎麼進一步撈出各個月各天的起飛延誤前三名呢？是不是filter_at/filter_if?
+```
+
+### 範例{-}
+
+> 若完成，請直接貼到open chat
+
+1. 若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？
+
+2. 後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？
+
+3. 假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？
+
+4. 要成交前，該位買家因為莫名原因心情好，決定要買他挑選標準該數據的前三名，請問你應該給他哪三台車的最終報價？
+
+5. 服務完這位客戶後，發現自己累積了不少經驗，也留意到汽缸數多寡與馬力有一定關聯性，閒來之餘想要整理一下相同汽缸數下，不同車款的馬力比較表作為往後參考，請問該怎麼做？
+
 ```{r, eval=FALSE}
-band_members
-band_instruments
+mtcars
+```
+
+```{r, eval=FALSE,include=FALSE}
+mtcars %>% group_by(cyl) %>% arrange(desc(hp), .by_group = T)
+```
+
+### 自主練習{-}
+
+1. (延續上一題）休士頓火箭隊，各個守備位置各有多少人？
+
+> 1. 隊(Team)、守備位置(Position)是兩個分組條件<br>
+  2. 計算row（或者說樣本個數），可以用n(), number of values/rows，可參考dplyr cheatsheet
+
+```{r, eval=FALSE,include=FALSE}
+NBA1718 %>% group_by(Team, Position) %>% summarise(nPlayer = n()) %>% filter(Team == "HOU")
+```
+
+
+
+
+
+<!--chapter:end:07-Group_by.Rmd-->
+
+# 其他
+
+![](./graph/gather&spread.png)
+
+### 行列互相轉換gather()/spread(){-}
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+```
+
+```{r, echo=FALSE, include=TRUE}
+klippy::klippy()
+```
+
+```{r, include=FALSE}
+library(dplyr)
+library(nycflights13)
+library(SportsAnalytics)
+fetch_NBAPlayerStatistics("17-18") -> NBA1718
+```
+
+1. gather/spread來自哪一個套件？
+```{r, eval=FALSE}
+?dplyr #查詢特定套件用一個`?`
+??gather #查詢特定函數用兩個`??`
+??spread
+```
+
+2. 引入需要的套件
+```{r, warning=FALSE}
+library(tidyr)
+```
+
+#### gather() {-}
+
+> gather()函數會將許多欄位變數(column, or variables)，轉化成列(row, or obervations)。<br> 重要參數說明 :<br>
+1. key：為「原本的欄位變數」，其轉換為row obervation後，命名該新增欄位的名稱。<br>
+2. value：為「原本的欄位變數」的觀察值(obervations)，命名其新欄位的名字。<br>
+
+請問這兩段程式碼結果有什麼不同？（請用css或者數量方法的開合）
+```{r}
+flights %>% select(year:day, dep_delay)
 ```
 
 ```{r}
-band_members %>% left_join(band_instruments)
+flights %>% select(year:day, dep_delay) %>% 
+            gather(dep_delay, key = "departure_delay", value = "number")
+```
+
+#### spread() {-}
+
+```{r, results='hide'}
+#先另存成一個新物件方便後續操作。
+flights %>% select(year:day, dep_delay) %>% 
+            gather(dep_delay, key = "departure_delay", value = "number") -> flights1
+```
+
+> 基本上spread()與gather()，目的相反。將列(row, or obervations)，轉化成欄位變數(column, or variables) <br> 重要參數說明 :<br>
+1. key：挑選要將哪一個欄位變數「其obversation內容」轉換為「新欄位變數」，新欄位名稱即為原本的obervation內容。<br>
+2. value：挑選要將哪一個欄位變數「其obversation內容」設定為新產生的欄位變數的內容。<br>
+
+1. 下列兩段程式碼有什麼不同？哪一個可以運作成功？
+
+> 使用spread的過程中，如果要轉成欄位的該觀測值(obervations)，沒有某一個欄位變數可以一對一對應的話(be unique)，轉換就會失敗。所以可以新增一行unique index column。
+
+相關資料參考[^1]
+
+```{r, eval=FALSE}
+flights1 %>% spread(key = departure_delay, value = number)
 ```
 
 ```{r}
-#兩個資料集皆有name，就算by沒有設定，參數會自動比較有無common names(common variables)，這兩個資料表也只有name一個共同變數。當然有時候共同的變數不只一個。
-band_members %>% left_join(band_instruments, by="name")
-```
-
-```{r, eval=FALSE}
-#會成功嗎？（band_instruments (右邊)資料表沒有band這個變數，無法作為共同的參照基礎，兩者無從比較，是不能的。）
-band_members %>% left_join(band_instruments, by="band")
-```
-
-```{r, eval=FALSE}
-#會成功嗎？(band_members資料表沒有plays這個變數，起初就設定錯誤)
-band_members %>% left_join(band_instruments, by="plays")
+flights1 %>% group_by(departure_delay) %>% mutate(grouped_id = row_number()) %>%
+  spread(departure_delay, number) %>% select(-grouped_id)
 ```
 
 
+[^1]:[Workaround for tidyr::spread with duplicate row identifiers on R-bloggers](https://www.r-bloggers.com/workaround-for-tidyrspread-with-duplicate-row-identifiers/)
 
-<!--chapter:end:08-join.Rmd-->
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:09-others.Rmd-->
 
 # 參考資料
 
