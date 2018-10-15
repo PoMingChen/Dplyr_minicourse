@@ -14,8 +14,6 @@ HTML('
      ')
 ```
 
-![]()
-
 #### Select 是針對欄位(variables)做子集合{-}
 
 ```{r, include=FALSE}
