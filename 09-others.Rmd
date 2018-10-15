@@ -38,21 +38,25 @@ library(tidyr)
 2. value：為「原本的欄位變數」的觀察值(obervations)，命名其新欄位的名字。<br>
 
 請問這兩段程式碼結果有什麼不同？
-```{r}
-flights %>% select(year:day, dep_delay)
+```{r, warning=FALSE}
+#總共有336,776 rows
+flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum)
 ```
 
 ```{r}
-flights %>% select(year:day, dep_delay) %>% 
-            gather(dep_delay, key = "departure_delay", value = "number")
+#總共有673,552 rows
+flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum) %>%   gather(c(dep_delay,arr_delay), key = "the_delay", value = "minutes")
+```
+
+```{r, warning=FALSE}
+flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum) %>% gather(c(dep_delay,arr_delay), key = "the_delay", value = "minutes") %>% filter(flight == 1545, tailnum == "N14228")          
 ```
 
 #### spread() {-}
 
 ```{r, results='hide'}
-#先另存成一個新物件方便後續操作。
-flights %>% select(year:day, dep_delay) %>% 
-            gather(dep_delay, key = "departure_delay", value = "number") -> flights1
+#先另存成一個新物件flights1方便後續操作。
+flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum)               %>% gather(c(dep_delay,arr_delay), key = "the_delay", value = "minutes") -> flights1
 ```
 
 > 基本上spread()與gather()，目的相反。將列(row, or obervations)，轉化成欄位變數(column, or variables) <br> 重要參數說明 :<br>
@@ -61,19 +65,25 @@ flights %>% select(year:day, dep_delay) %>%
 
 1. 下列兩段程式碼有什麼不同？哪一個可以運作成功？
 
+```{r, eval=FALSE}
+flights1 %>% spread(key = "the_delay", value = "minutes")
+```
+
 > 使用spread的過程中，如果要轉成欄位的該觀測值(obervations)，沒有某一個欄位變數可以一對一對應的話(be unique)，轉換就會失敗。所以可以新增一行unique index column。
 
 相關資料參考[^1]
 
 ```{r, eval=FALSE}
-flights1 %>% spread(key = departure_delay, value = number)
+flights1 %>% group_by(the_delay) %>% 
+             mutate(grouped_id = row_number())
 ```
 
 ```{r}
-flights1 %>% group_by(departure_delay) %>% mutate(grouped_id = row_number()) %>%
-  spread(departure_delay, number) %>% select(-grouped_id)
+flights1 %>% group_by(the_delay) %>% 
+             mutate(grouped_id = row_number()) %>%
+             spread(key = "the_delay",value = "minutes") %>% 
+             select(-grouped_id)
 ```
-
 
 [^1]:[Workaround for tidyr::spread with duplicate row identifiers on R-bloggers](https://www.r-bloggers.com/workaround-for-tidyrspread-with-duplicate-row-identifiers/)
 
