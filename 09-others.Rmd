@@ -1,6 +1,6 @@
 # 其他
 
-![](./graph/gather&spread.png)
+![](./graph/gather_spread.png)
 
 ### 行列互相轉換gather()/spread(){-}
 
