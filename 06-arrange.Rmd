@@ -1,6 +1,18 @@
 # 排序觀察值arrange()
 
-![](./graph/arrange.png)
+<div class="alert white">
+cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
+
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/arrange.png" style="width:45%">
+</div>
+     ')
+```
 
 #### 遞增排序，以及遞減排序{-}
 

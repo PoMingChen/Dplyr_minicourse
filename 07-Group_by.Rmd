@@ -1,6 +1,19 @@
 # 分群分析group_by()
 
-![](./graph/group_by.png)
+<div class="alert white">
+cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
+
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/group_by.png" style="width:45%">
+</div>
+     ')
+```
+
 
 #### 分群分析與群內排序{-}
 
