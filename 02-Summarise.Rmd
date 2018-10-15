@@ -9,9 +9,9 @@ library(htmltools)
 HTML('
 <div class="collapse" id="collapseExample">
 <h3>第一部分</h3>
-<img src="./graph/summarise.png" style="width:45%">
+<img src="./graph/summarise.png" style="width:50%">
 <h3>第二部分</h3>
-<img src="./graph/summarise2.png" style="width:45%">
+<img src="./graph/summarise2.png" style="width:50%">
 </div>
      ')
 ```

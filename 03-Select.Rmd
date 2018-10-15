@@ -9,7 +9,7 @@ library(htmltools)
 HTML('
 <div class="collapse" id="collapseExample">
 <h3>第一部分</h3>
-<img src="./graph/select.png" style="width:45%">
+<img src="./graph/select.png" style="width:50%">
 </div>
      ')
 ```
