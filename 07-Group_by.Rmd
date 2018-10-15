@@ -43,8 +43,6 @@ flights %>% group_by(carrier, flight) %>%
 flights %>% group_by(month, day) %>% 
             summarise_at(vars(dep_delay), funs(mean), na.rm = T) %>% 
             arrange(desc(dep_delay), .by_group = T)
-
-#那要怎麼進一步撈出各個月各天的起飛延誤前三名呢？是不是filter_at/filter_if?
 ```
 
 ### 範例{-}

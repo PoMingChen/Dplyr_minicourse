@@ -26,6 +26,7 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 
 
 1. summarise
+
 > 記得要幫你的`summarise`後的結果，取一個變數名稱。這邊是avg_dep_delay。
 
 ```{r}

@@ -2,11 +2,11 @@
 
 1. 特別感謝國立臺北大學經濟系林茂廷教授給予的編寫建議與諮詢。
 
-2. [長庚大學資管系大數據分析方法課程教學用書](https://yijutseng.github.io/DataScienceRBook/)
+2. [長庚大學資管系大數據分析方法課程教學用書 曾意儒老師](https://yijutseng.github.io/DataScienceRBook/)
 
 3. [r4ds](http://r4ds.had.co.nz/introduction.html)
 
-### 其他推薦資源{-}
+#### 其他推薦資源{-}
 
 [R翻轉教室](http://datascienceandr.org)
 
