@@ -276,7 +276,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="4" style="list-style-type: decimal">
 <li>看起來比較特別的%in%，是什麼？</li>
 </ol>
-<pre class="sourceCode r" id="cb37"><code class="sourceCode r"><div class="sourceLine" id="cb37-1" data-line-number="1"><span class="co">#基本理解是：是否出現該字眼，或者説是否包含於。</span></div>
+<pre class="sourceCode r" id="cb37"><code class="sourceCode r"><div class="sourceLine" id="cb37-1" data-line-number="1"><span class="co">#基本理解是：是否屬於。</span></div>
 <div class="sourceLine" id="cb37-2" data-line-number="2"><span class="co">#在字串變數(character)的挑選，以及其他字串操作上很常用</span></div>
 <div class="sourceLine" id="cb37-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;UA&quot;</span>,<span class="st">&quot;US&quot;</span>), dep_delay <span class="op">+</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>)</div></code></pre>
 <pre><code>## # A tibble: 63,006 x 19

@@ -206,9 +206,11 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
 <ol style="list-style-type: decimal">
-<li>summarise
-&gt; 記得要幫你的<code>summarise</code>後的結果，取一個變數名稱。這邊是avg_dep_delay。</li>
+<li>summarise</li>
 </ol>
+<blockquote>
+<p>記得要幫你的<code>summarise</code>後的結果，取一個變數名稱。這邊是avg_dep_delay。</p>
+</blockquote>
 <pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">avg_dep_delay =</span> <span class="kw">mean</span>(dep_delay), <span class="dt">dep_delay_sd =</span> <span class="kw">sd</span>(dep_delay))</div></code></pre>
 <pre><code>## # A tibble: 1 x 2
 ##   avg_dep_delay dep_delay_sd
