@@ -1,11 +1,15 @@
 # 參考資料
 
-[林茂廷老師dplyr用書](https://bookdown.org/tpemartin/dplyr_intro/section-1.html)
+1. 特別感謝國立臺北大學經濟系林茂廷教授給予的編寫建議與諮詢。
 
-[r4ds](http://r4ds.had.co.nz/introduction.html)
+2. [長庚大學資管系大數據分析方法課程教學用書](https://yijutseng.github.io/DataScienceRBook/)
 
-[長庚大學資管系大數據分析方法課程教學用書](https://yijutseng.github.io/DataScienceRBook/)
+3. [r4ds](http://r4ds.had.co.nz/introduction.html)
 
-[推薦活動：Taiwan R user group meetup](https://www.meetup.com/Taiwan-R/)
+### 其他推薦資源{-}
+
+[R翻轉教室](http://datascienceandr.org)
+
+[推薦社群：Taiwan R user group meetup](https://www.meetup.com/Taiwan-R/)
 
 [推薦文章：Tidyverse，學習R語言的新起點](https://getpocket.com/a/read/1967425863)
