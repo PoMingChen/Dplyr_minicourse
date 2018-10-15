@@ -9,9 +9,9 @@ bookdown::gitbook:
     toc:
       collapse: none
       before: |
-        <li><a href="./">資料科學程式設計（一）</a></li>
+        <li><a href="./">R_Dplyr_minicourse</a></li>
       after: |
-        <li><a href="https://www.ntpu.edu.tw/econ" target="blank">國立臺北大學 經濟學系</a></li>
+        <li><a href="https://www.facebook.com/Emajortaiwanforu/" target="blank">E.MajorTaiwan</a></li>
     download: [pdf, epub]
 #    edit: https://github.com/yihui/bookdown-chinese/edit/master/%s
     sharing:
