@@ -1,9 +1,20 @@
 # 敘述統計量Summarise()
 
+<div class="alert white">
+cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
 
-![](./graph/summarise.png)
-
-![](./graph/summarise2.png)
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/summarise.png" style="width:45%">
+<h3>第二部分</h3>
+<img src="./graph/summarise2.png" style="width:45%">
+</div>
+     ')
+```
 
 > Summary functions take `vectors as input and return one value`，意思就是他會精煉出一個值，可能是某一個變數的平均數等。
 
