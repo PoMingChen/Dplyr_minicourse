@@ -39,7 +39,7 @@ flights %>% filter(dep_delay + arr_delay <= 30)
 
 4. 看起來比較特別的%in%，是什麼？
 ```{r}
-#基本理解是：是否出現該字眼，或者説是否包含於。
+#基本理解是：是否屬於。
 #在字串變數(character)的挑選，以及其他字串操作上很常用
 flights %>% filter(carrier %in% c("UA","US"), dep_delay + arr_delay <= 30)
 ```
