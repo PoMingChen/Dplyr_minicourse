@@ -1,6 +1,18 @@
 # 篩選適當觀察值filter()
 
-![](./graph/filter.png)
+<div class="alert white">
+cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
+
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/filter.png" style="width:45%">
+</div>
+     ')
+```
 
 #### filter 是針對列(row)，或者說觀察值(obervations)，做子集合，目的是尋找滿足特定條件的資料點{-}
 
