@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-15">
+<meta name="date" content="2018-10-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,12 +34,12 @@
   
 <link rel="prev" href="summarise.html">
 <link rel="next" href="filter.html">
-<script src="libs/jquery/jquery.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 
 
 
@@ -47,26 +47,11 @@
 
 
 
-<script src="libs/clipboard/clipboard.min.js"></script>
-<link href="libs/primer-tooltips/build.css" rel="stylesheet" />
-<link href="libs/klippy/css/klippy.min.css" rel="stylesheet" />
-<script src="libs/klippy/js/klippy.min.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109510055-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-109510055-1');
-</script>
-
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'NTPU-Econ/minicourse-dplyr'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+<script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 <style type="text/css">
@@ -123,7 +108,7 @@ code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Comme
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -136,6 +121,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">R_Dplyr_minicourse</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 課程規劃</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
@@ -175,6 +163,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li class="chapter" data-level="" data-path="section-9.html"><a href="section-9.html#gatherspread"><i class="fa fa-check"></i>行列互相轉換gather()/spread()</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 參考資料</a></li>
+<li class="divider"></li>
+<li><a href="https://www.facebook.com/Emajortaiwanforu/" target="blank">E.MajorTaiwan</a></li>
+
 </ul>
 
       </nav>
@@ -192,9 +183,28 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ntpuecon/course-programming-for-data-science'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+<style>
+.exercise {
+    background-color: PaleGreen;
+}
+</style>
 <div id="select" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> 挑選適當的欄位Select()</h1>
-<p><img src="graph/select.png" /></p>
+<div class="alert white">
+<p>cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a></p>
+</div>
+
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="graph/select.png" style="width:45%">
+</div>
+     
 <div id="select-variables" class="section level4 unnumbered">
 <h4>Select 是針對欄位(variables)做子集合</h4>
 <script>
@@ -204,132 +214,122 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>基本取法</li>
 </ol>
-<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1"><span class="co">#若我想看每一個航班的基本資料，包含起飛與目的地</span></div>
-<div class="sourceLine" id="cb18-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year,month,day,carrier,flight,tailnum,origin,dest)</div></code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#若我想看每一個航班的基本資料，包含起飛與目的地</span></div>
+<div class="sourceLine" id="cb1-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year,month,day,carrier,flight,tailnum,origin,dest)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 8
-##     year month   day carrier flight tailnum origin
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; 
-##  1  2013     1     1 UA        1545 N14228  EWR   
-##  2  2013     1     1 UA        1714 N24211  LGA   
-##  3  2013     1     1 AA        1141 N619AA  JFK   
-##  4  2013     1     1 B6         725 N804JB  JFK   
-##  5  2013     1     1 DL         461 N668DN  LGA   
-##  6  2013     1     1 UA        1696 N39463  EWR   
-##  7  2013     1     1 B6         507 N516JB  EWR   
-##  8  2013     1     1 EV        5708 N829AS  LGA   
-##  9  2013     1     1 B6          79 N593JB  JFK   
-## 10  2013     1     1 AA         301 N3ALAA  LGA   
-## # ... with 336,766 more rows, and 1 more variable:
-## #   dest &lt;chr&gt;</code></pre>
+##     year month   day carrier flight tailnum origin dest 
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;
+##  1  2013     1     1 UA        1545 N14228  EWR    IAH  
+##  2  2013     1     1 UA        1714 N24211  LGA    IAH  
+##  3  2013     1     1 AA        1141 N619AA  JFK    MIA  
+##  4  2013     1     1 B6         725 N804JB  JFK    BQN  
+##  5  2013     1     1 DL         461 N668DN  LGA    ATL  
+##  6  2013     1     1 UA        1696 N39463  EWR    ORD  
+##  7  2013     1     1 B6         507 N516JB  EWR    FLL  
+##  8  2013     1     1 EV        5708 N829AS  LGA    IAD  
+##  9  2013     1     1 B6          79 N593JB  JFK    MCO  
+## 10  2013     1     1 AA         301 N3ALAA  LGA    ORD  
+## # ... with 336,766 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>取連續某幾行的欄位</li>
 </ol>
-<pre class="sourceCode r" id="cb20"><code class="sourceCode r"><div class="sourceLine" id="cb20-1" data-line-number="1"><span class="co">#跟上面的寫法，有什麼異同？</span></div>
-<div class="sourceLine" id="cb20-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day,carrier<span class="op">:</span>dest)</div></code></pre>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#跟上面的寫法，有什麼異同？</span></div>
+<div class="sourceLine" id="cb3-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day,carrier<span class="op">:</span>dest)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 8
-##     year month   day carrier flight tailnum origin
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; 
-##  1  2013     1     1 UA        1545 N14228  EWR   
-##  2  2013     1     1 UA        1714 N24211  LGA   
-##  3  2013     1     1 AA        1141 N619AA  JFK   
-##  4  2013     1     1 B6         725 N804JB  JFK   
-##  5  2013     1     1 DL         461 N668DN  LGA   
-##  6  2013     1     1 UA        1696 N39463  EWR   
-##  7  2013     1     1 B6         507 N516JB  EWR   
-##  8  2013     1     1 EV        5708 N829AS  LGA   
-##  9  2013     1     1 B6          79 N593JB  JFK   
-## 10  2013     1     1 AA         301 N3ALAA  LGA   
-## # ... with 336,766 more rows, and 1 more variable:
-## #   dest &lt;chr&gt;</code></pre>
+##     year month   day carrier flight tailnum origin dest 
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;
+##  1  2013     1     1 UA        1545 N14228  EWR    IAH  
+##  2  2013     1     1 UA        1714 N24211  LGA    IAH  
+##  3  2013     1     1 AA        1141 N619AA  JFK    MIA  
+##  4  2013     1     1 B6         725 N804JB  JFK    BQN  
+##  5  2013     1     1 DL         461 N668DN  LGA    ATL  
+##  6  2013     1     1 UA        1696 N39463  EWR    ORD  
+##  7  2013     1     1 B6         507 N516JB  EWR    FLL  
+##  8  2013     1     1 EV        5708 N829AS  LGA    IAD  
+##  9  2013     1     1 B6          79 N593JB  JFK    MCO  
+## 10  2013     1     1 AA         301 N3ALAA  LGA    ORD  
+## # ... with 336,766 more rows</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>取特定類型的欄位</li>
 </ol>
-<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#若我有想看有關起飛與抵達的資料，contains()，就能派上用場，當然也有其他內容，請參考cheatsheet</span></div>
-<div class="sourceLine" id="cb22-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;dep&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;arr&quot;</span>))</div></code></pre>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#若我有想看有關起飛與抵達的資料，contains()，就能派上用場，當然也有其他內容，請參考cheatsheet</span></div>
+<div class="sourceLine" id="cb5-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;dep&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;arr&quot;</span>))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 7
-##    dep_time sched_dep_time dep_delay arr_time
-##       &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1      517            515         2      830
-##  2      533            529         4      850
-##  3      542            540         2      923
-##  4      544            545        -1     1004
-##  5      554            600        -6      812
-##  6      554            558        -4      740
-##  7      555            600        -5      913
-##  8      557            600        -3      709
-##  9      557            600        -3      838
-## 10      558            600        -2      753
-## # ... with 336,766 more rows, and 3 more variables:
-## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,
-## #   carrier &lt;chr&gt;</code></pre>
+##    dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay
+##       &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+##  1      517            515         2      830            819        11
+##  2      533            529         4      850            830        20
+##  3      542            540         2      923            850        33
+##  4      544            545        -1     1004           1022       -18
+##  5      554            600        -6      812            837       -25
+##  6      554            558        -4      740            728        12
+##  7      555            600        -5      913            854        19
+##  8      557            600        -3      709            723       -14
+##  9      557            600        -3      838            846        -8
+## 10      558            600        -2      753            745         8
+## # ... with 336,766 more rows, and 1 more variable: carrier &lt;chr&gt;</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>去掉某些變數(drop certain variables)</li>
 </ol>
-<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">#若我留意有些變數，對後續分析沒有幫助...</span></div>
-<div class="sourceLine" id="cb24-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour))</div></code></pre>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">#若我留意有些變數，對後續分析沒有幫助...</span></div>
+<div class="sourceLine" id="cb7-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 18
-##     year month   day dep_time sched_dep_time dep_delay
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
-##  1  2013     1     1      517            515         2
-##  2  2013     1     1      533            529         4
-##  3  2013     1     1      542            540         2
-##  4  2013     1     1      544            545        -1
-##  5  2013     1     1      554            600        -6
-##  6  2013     1     1      554            558        -4
-##  7  2013     1     1      555            600        -5
-##  8  2013     1     1      557            600        -3
-##  9  2013     1     1      557            600        -3
-## 10  2013     1     1      558            600        -2
-## # ... with 336,766 more rows, and 12 more variables:
-## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # ... with 336,766 more rows, and 11 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;</code></pre>
-<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1"><span class="co">#一次可以去掉多個變數嗎？</span></div>
-<div class="sourceLine" id="cb26-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour,tailnum,flight))</div></code></pre>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1"><span class="co">#一次可以去掉多個變數嗎？</span></div>
+<div class="sourceLine" id="cb9-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour,tailnum,flight))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 16
-##     year month   day dep_time sched_dep_time dep_delay
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
-##  1  2013     1     1      517            515         2
-##  2  2013     1     1      533            529         4
-##  3  2013     1     1      542            540         2
-##  4  2013     1     1      544            545        -1
-##  5  2013     1     1      554            600        -6
-##  6  2013     1     1      554            558        -4
-##  7  2013     1     1      555            600        -5
-##  8  2013     1     1      557            600        -3
-##  9  2013     1     1      557            600        -3
-## 10  2013     1     1      558            600        -2
-## # ... with 336,766 more rows, and 10 more variables:
-## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, origin &lt;chr&gt;,
-## #   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre>
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # ... with 336,766 more rows, and 9 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>everthing()</li>
 </ol>
-<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1"><span class="co">#everything()，意思是all variables的意思。</span></div>
-<div class="sourceLine" id="cb28-2" data-line-number="2"><span class="co">#稍等與mutate()一起使用可以提升資料整理的效率性。</span></div>
-<div class="sourceLine" id="cb28-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">everything</span>())</div></code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">#everything()，意思是all variables的意思。</span></div>
+<div class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#稍等與mutate()一起使用可以提升資料整理的效率性。</span></div>
+<div class="sourceLine" id="cb11-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">everything</span>())</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
-##  1  2013     1     1      517            515         2
-##  2  2013     1     1      533            529         4
-##  3  2013     1     1      542            540         2
-##  4  2013     1     1      544            545        -1
-##  5  2013     1     1      554            600        -6
-##  6  2013     1     1      554            558        -4
-##  7  2013     1     1      555            600        -5
-##  8  2013     1     1      557            600        -3
-##  9  2013     1     1      557            600        -3
-## 10  2013     1     1      558            600        -2
-## # ... with 336,766 more rows, and 13 more variables:
-## #   arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
-## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # ... with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
 <div id="-2" class="section level3 unnumbered">
@@ -340,7 +340,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？</li>
 </ol>
-<pre class="sourceCode r" id="cb30"><code class="sourceCode r"><div class="sourceLine" id="cb30-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1">mtcars</div></code></pre>
 </div>
 <div id="-2" class="section level3 unnumbered">
 <h3>自主練習</h3>
@@ -350,6 +350,73 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 2. Include library -->
+<script src="js/clipboard.min.js"></script>
+
+<!-- 3. Instantiate clipboard by passing a string selector -->
+
+<script>
+var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
+
+<script>
+  var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+</script>
+
+<script>
+  function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+
+} else if (window.getSelection) {
+    var range = document.createRange();
+     range.selectNode(document.getElementById(containerid));
+     window.getSelection().addRange(range);
+     document.execCommand("copy");
+     alert("text copied")
+}}
+</script>
+
+<!--
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'https://gitter.im/NTPU-Econ/Econometrics'
+  };
+</script>
+
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+-->
             </section>
 
           </div>
@@ -359,19 +426,19 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <a href="filter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -389,7 +456,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"]
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"],
+"toc": {
+"collapse": "none"
+},
+"theme": "united"
 });
 });
 </script>

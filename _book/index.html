@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-15">
+<meta name="date" content="2018-10-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,22 +51,7 @@
 <link href="libs/primer-tooltips/build.css" rel="stylesheet" />
 <link href="libs/klippy/css/klippy.min.css" rel="stylesheet" />
 <script src="libs/klippy/js/klippy.min.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109510055-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-109510055-1');
-</script>
-
-<script>
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'NTPU-Econ/minicourse-dplyr'
-  };
-</script>
-<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 <style type="text/css">
@@ -123,7 +108,7 @@ code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Comme
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -136,6 +121,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">R_Dplyr_minicourse</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 課程規劃</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e5898de8a880"><i class="fa fa-check"></i>前言</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8aab2e5898de8a681e6b182"><i class="fa fa-check"></i>課前要求</a></li>
@@ -175,6 +163,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li class="chapter" data-level="" data-path="section-9.html"><a href="section-9.html#gatherspread"><i class="fa fa-check"></i>行列互相轉換gather()/spread()</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 參考資料</a></li>
+<li class="divider"></li>
+<li><a href="https://www.facebook.com/Emajortaiwanforu/" target="blank">E.MajorTaiwan</a></li>
+
 </ul>
 
       </nav>
@@ -192,10 +183,21 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'ntpuecon/course-programming-for-data-science'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+<style>
+.exercise {
+    background-color: PaleGreen;
+}
+</style>
 <div id="header">
 <h1 class="title">R_Dplyr_minicourse</h1>
 <h4 class="author"><em>陳柏銘PoMingChen</em></h4>
-<h4 class="date"><em>2018-10-15</em></h4>
+<h4 class="date"><em>2018-10-16</em></h4>
 </div>
 <div id="section-1" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> 課程規劃</h1>
@@ -261,6 +263,73 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 2. Include library -->
+<script src="js/clipboard.min.js"></script>
+
+<!-- 3. Instantiate clipboard by passing a string selector -->
+
+<script>
+var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
+
+<script>
+  var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+copyTextareaBtn.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+</script>
+
+<script>
+  function CopyToClipboard(containerid) {
+if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+
+} else if (window.getSelection) {
+    var range = document.createRange();
+     range.selectNode(document.getElementById(containerid));
+     window.getSelection().addRange(range);
+     document.execCommand("copy");
+     alert("text copied")
+}}
+</script>
+
+<!--
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'https://gitter.im/NTPU-Econ/Econometrics'
+  };
+</script>
+
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+-->
             </section>
 
           </div>
@@ -282,7 +351,7 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
+"facebook": false,
 "twitter": true,
 "google": false,
 "linkedin": false,
@@ -300,7 +369,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"]
+"download": ["Dplyr_minicourse.pdf", "Dplyr_minicourse.epub"],
+"toc": {
+"collapse": "none"
+},
+"theme": "united"
 });
 });
 </script>
