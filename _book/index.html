@@ -183,9 +183,19 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109510055-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109510055-1');
+</script>
+
 <script>
   ((window.gitter = {}).chat = {}).options = {
-    room: 'ntpuecon/course-programming-for-data-science'
+    room: 'NTPU-Econ/minicourse-dplyr'
   };
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
@@ -203,8 +213,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <h1><span class="header-section-number">Chapter 1</span> 課程規劃</h1>
 <div id="e5898de8a880" class="section level2 unnumbered">
 <h2>前言</h2>
-<p>Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探索式資料分析的第一步。</p>
-<p>探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立必要變數的部分，必要時需要透過爬蟲或者引入第三方資料，才算完整。</p>
+<p>Dplyr是R語言當中相當重要的資料處理與轉換(Data Transformation)套件，同時也是跨出探索式資料分析的第一步。</p>
+<p>探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立新變數特徵(features)等部分，必要時需透過爬蟲或者引入第三方資料，才算完整。</p>
 <p>資料處理做得好，整體的分析方向和後面的統計建模才會有意義且往對的道路前進，以避免不必要的時間、資源浪費。</p>
 </div>
 <div id="e8aab2e5898de8a681e6b182" class="section level2 unnumbered">
@@ -213,52 +223,65 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li>安裝：R and R Studio Desktop: <a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a><br />
 </li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">下載dplyr cheatsheet</a></li>
-<li>註冊<a href="https://web.hypothes.is">hypothes.is</a>，並點選以下連結加入討論群：<a href="https://hypothes.is/groups/YX79arq3/minicourse-dplyr" class="uri">https://hypothes.is/groups/YX79arq3/minicourse-dplyr</a></li>
-<li>安裝<a href="https://www.google.com/chrome/">Chrome瀏覽器</a></li>
-<li>安裝<a href="https://chrome.google.com/webstore/search/hypothesis?hl=en">hypothes.is extension for Chrome</a></li>
 <li>註冊<a href="https://github.com">Github</a></li>
-<li>安裝<a href="https://desktop.github.com">Github Desktop</a></li>
+<li>用Github帳戶登入右下角gitter open chat聊天室</li>
 </ol>
 </div>
 <div id="e8aab2e7a88be5a4a7e7b6b1" class="section level2 unnumbered">
 <h2>課程大綱</h2>
+<p>本課程將逐步介紹Dplyr裡常見的函數，主要會透過R語言內建的nycflights13以及mtcars做教學與課堂上練習。自主練習部分則是利用美國職籃NBA17~18球季的球員統計資料做簡單的資料探索。</p>
+<p>課堂範例(mtcars)與自主練習(NBA1718)皆無提供程式碼答案，前者請於課堂上透過gitter open chat貼上寫好的程式碼，也藉此了解大家的學習狀況。後者可以有空時玩一玩，貼在gitter，歡迎大家一起討論成長。</p>
 <blockquote>
-<p>本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。</p>
+<p>join(合併報表)是Dplyr中相當重要的一環，但因初期使用時機不多，所以有興趣可以自行參考cheatsheet。取代地，補充了tidyr裡面常用的gather/spread，用來轉換資料行列排版的函數。</p>
 </blockquote>
-<p>以下為講解的資料整理函數(4 + 4）：</p>
+<p>以下為講解內容順序：</p>
+<ol style="list-style-type: decimal">
+<li>認識資料基本資訊</li>
+</ol>
 <ul>
-<li><p>認識資料基本資訊</p>
-<ul>
-<li><code>head</code>、<code>Str</code>、<code>rename</code>、<code>?</code></li>
-</ul></li>
-<li><p>計算敘述統計量</p>
+<li><code>?</code>、<code>head</code>、<code>Str</code>、<code>rename</code></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>計算敘述統計量</li>
+</ol>
 <ul>
 <li><code>summarise</code></li>
-</ul></li>
-<li><p>挑選適當的欄位</p>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>挑選適當的欄位</li>
+</ol>
 <ul>
 <li><code>select</code></li>
-</ul></li>
-<li><p>篩選適當觀察值</p>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>篩選適當觀察值</li>
+</ol>
 <ul>
 <li><code>filter</code></li>
-</ul></li>
-<li><p>從既有變數產生新變數</p>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>從既有變數產生新變數</li>
+</ol>
 <ul>
 <li><code>mutate</code></li>
-</ul></li>
-<li><p>排序觀察值</p>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>排序觀察值</li>
+</ol>
 <ul>
 <li><code>arrange</code></li>
-</ul></li>
-<li><p>分群分析</p>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>分群分析</li>
+</ol>
 <ul>
 <li><code>group_by</code></li>
-</ul></li>
-<li><p>其他</p>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li>其他</li>
+</ol>
 <ul>
 <li><code>gather/spread</code></li>
-</ul></li>
 </ul>
 
 </div>

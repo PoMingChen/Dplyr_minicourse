@@ -183,9 +183,19 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109510055-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109510055-1');
+</script>
+
 <script>
   ((window.gitter = {}).chat = {}).options = {
-    room: 'ntpuecon/course-programming-for-data-science'
+    room: 'NTPU-Econ/minicourse-dplyr'
   };
 </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
@@ -200,15 +210,26 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
   addClassKlippyTo("pre.r, pre.markdown");
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
+<div class="alert white">
+<p>cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a></p>
+</div>
+
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="graph/Base_Info.png" style="width:50%">
+</div>
+     
 <div id="e5bc95e585a5e99c80e8a681e794a8e588b0e79a84e5a597e4bbb6" class="section level3 unnumbered">
 <h3>引入需要用到的套件</h3>
 <pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#library(tidyverse)</span></div>
 <div class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</div>
 <div class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(nycflights13)</div>
 <div class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(SportsAnalytics)</div>
-<div class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;17-18&quot;</span>) -&gt;<span class="st"> </span>NBA1718</div>
-<div class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"># 若無法成功，請先下載套件。</span></div>
-<div class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># 我們只要觀察2017-2018球季的資料。</span></div></code></pre>
+<div class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(tibble)</div>
+<div class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;17-18&quot;</span>) -&gt;<span class="st"> </span>NBA1718</div>
+<div class="sourceLine" id="cb1-7" data-line-number="7">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rownames_to_column</span>(<span class="dt">var =</span> <span class="st">&quot;car_name&quot;</span>) -&gt;<span class="st"> </span>mtcars</div>
+<div class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># 若無法成功，請先下載套件。</span></div>
+<div class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># 我們只要觀察2017-2018球季的資料。</span></div></code></pre>
 <div id="e5bc95e585a5e8b387e69699" class="section level4 unnumbered">
 <h4>引入資料</h4>
 <pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">flights</div>
