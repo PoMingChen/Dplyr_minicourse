@@ -28,6 +28,7 @@ klippy::klippy()
 library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
+library(tibble)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
@@ -79,7 +80,7 @@ mtcars
 ```
 
 ```{r, echo=FALSE,include=FALSE}
-mtcars %>% select(mpg, hp)
+mtcars %>% select(car_name, mpg, hp)
 ```
 
 ### 自主練習{-}

@@ -32,9 +32,9 @@ klippy::klippy()
 library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
+library(tibble)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
-
 
 1. summarise
 
@@ -69,12 +69,14 @@ flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
 1. 若你是一位賣車的菜鳥業務，為了要知道各車款的優劣勢，想先了解一下這些車，平均有多少汽缸數（cyl, cylinders)，平均有幾匹馬力(hp, Gross horsepower)，你會怎麼做？
 
 ```{r, eval=FALSE}
-mtcars
+mtcars 
 ```
 
 ```{r, echo=FALSE,include=FALSE}
 mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
 ```
+
+
 
 ### 自主練習{-}
 請問NBA 2017-2018球季，

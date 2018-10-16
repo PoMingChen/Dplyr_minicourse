@@ -32,6 +32,7 @@ klippy::klippy()
 library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
+library(tibble)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
 ```
 
@@ -67,7 +68,7 @@ mtcars
 ```
 
 ```{r, eval=FALSE,include=FALSE}
-mtcars %>% select(mpg, hp) %>% 
+mtcars %>% select(car_name, mpg, hp) %>% 
            filter(hp > mean(hp, na.rm = T)) %>% 
            mutate(good_cars = mpg*10 + hp)
 ```
