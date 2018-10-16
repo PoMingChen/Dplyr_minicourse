@@ -8,13 +8,29 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE)
 klippy::klippy()
 ```
 
+<div class="alert white">
+cheatsheet截圖對照<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
+
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/Base_Info.png" style="width:50%">
+</div>
+     ')
+```
+
 ### 引入需要用到的套件{-}
-```{r warning=FALSE}
+```{r, warning=FALSE}
 #library(tidyverse)
 library(dplyr)
 library(nycflights13)
 library(SportsAnalytics)
+library(tibble)
 fetch_NBAPlayerStatistics("17-18") -> NBA1718
+mtcars %>% rownames_to_column(var = "car_name") -> mtcars
 # 若無法成功，請先下載套件。
 # 我們只要觀察2017-2018球季的資料。
 ```
