@@ -39,7 +39,7 @@ showtext_auto()
 
 Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探索式資料分析的第一步。
 
-探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立必要變數的部分，必要時需要透過爬蟲或者引入第三方資料，才算完整。
+探索式資料分析是透過視覺化或敘述統計的方式，去觀察資料本身的特性或者變數與變數之間的關聯，以求對資料有更多的認識，看看是否有意外有趣的發現或者不符合常理的地方。當然也包含資料清理與建立新變數特徵(features)等部分，必要時需透過爬蟲或者引入第三方資料，才算完整。
 
 資料處理做得好，整體的分析方向和後面的統計建模才會有意義且往對的道路前進，以避免不必要的時間、資源浪費。
 
@@ -47,46 +47,45 @@ Dplyr是R語言當中相當重要的資料處理套件，同時也是跨出探�
 
 1. 安裝：R and R Studio Desktop: https://www.rstudio.com  
 2. [下載dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) 
-3. 註冊[hypothes.is](https://web.hypothes.is)，並點選以下連結加入討論群：https://hypothes.is/groups/YX79arq3/minicourse-dplyr
-4. 安裝[Chrome瀏覽器](https://www.google.com/chrome/)
-5. 安裝[hypothes.is extension for Chrome](https://chrome.google.com/webstore/search/hypothesis?hl=en)
-6. 註冊[Github](https://github.com)
-7. 安裝[Github Desktop](https://desktop.github.com)
+3. 註冊[Github](https://github.com)
+4. 用Github帳戶登入右下角gitter open chat聊天室
 
 ## 課程大綱 {-} 
 
-> 本課程將逐步介紹Dplyr常用的分析資料函數，會搭配dplyr cheatsheet以及Help做講解，希望能夠在熟悉基本工具之後，未來甚至不需要這本電子書就能夠用效率的方式使用Dplyr。
+本課程將逐步介紹Dplyr常用的資料分析函數，主要會透過R語言內建的nycflights13以及mtcars做教學與課堂上練習。自主練習部分則是利用美國職籃NBA17~18球季的球員統計資料做簡單的資料探索練習。
 
-以下為講解的資料整理函數(4 + 4）：
+課堂範例(mtcars)與自主練習(NBA1718)皆無提供程式碼答案，前者請於課堂上透過gitter open chat貼上寫好的程式碼，也藉此了解大家的學習狀況。後者可以有空時玩一玩，貼在gitter，歡迎大家一起討論成長。
 
-- 認識資料基本資訊
+以下為講解內容順序：
 
-  - `head`、`Str`、`rename`、`?`
+1. 認識資料基本資訊
+
+  - `?`、`head`、`Str`、`rename`
   
-- 計算敘述統計量
+2. 計算敘述統計量
 
   - `summarise`
 
-- 挑選適當的欄位
+3. 挑選適當的欄位
 
   - `select`
 
-- 篩選適當觀察值
+4. 篩選適當觀察值
 
   - `filter`
 
-- 從既有變數產生新變數
+5. 從既有變數產生新變數
 
   - `mutate`
 
-- 排序觀察值
+6. 排序觀察值
 
   - `arrange`
   
-- 分群分析
+7. 分群分析
 
   - `group_by`
   
-- 其他
+8. 其他
 
   - `gather/spread`
