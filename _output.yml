@@ -1,7 +1,7 @@
 bookdown::gitbook:
   includes:
     in_header: ["Before_body/bootstrap.html"] #hypothesis.html,
-    before_body: ["Before_body/open_review_block.html",
+    before_body: ["Before_body/head.html",
                   "Before_body/style.html"]
     after_body: ["After_body/bootstrap-after-body.html"]
   css: css/style.css
