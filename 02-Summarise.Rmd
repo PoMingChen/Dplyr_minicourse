@@ -42,6 +42,8 @@ fetch_NBAPlayerStatistics("17-18") -> NBA1718
 
 ```{r}
 flights %>% summarise(avg_dep_delay = mean(dep_delay), dep_delay_sd = sd(dep_delay))
+
+# flights$dep_delay %>% is.na
 ```
 
 ```{r, warning=FALSE}
