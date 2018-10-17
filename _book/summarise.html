@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-16">
+<meta name="date" content="2018-10-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -237,12 +237,13 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ##   avg_dep_delay dep_delay_sd
 ##           &lt;dbl&gt;        &lt;dbl&gt;
 ## 1            NA           NA</code></pre>
-<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">#為什麼na.rm沒有加上會變成NA?</span></div>
-<div class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#na.rm本身是什麼意思？</span></div>
-<div class="sourceLine" id="cb13-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">dep_delay_mean =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> T),</div>
-<div class="sourceLine" id="cb13-4" data-line-number="4">                      <span class="dt">arr_delay_mean =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> T),</div>
-<div class="sourceLine" id="cb13-5" data-line-number="5">                      <span class="dt">dep_delay_sd =</span> <span class="kw">sd</span>(dep_delay, <span class="dt">na.rm =</span> T),</div>
-<div class="sourceLine" id="cb13-6" data-line-number="6">                      <span class="dt">arr_delay_sd =</span> <span class="kw">sd</span>(arr_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># flights$dep_delay %&gt;% is.na()</span></div></code></pre>
+<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">#為什麼na.rm沒有加上會變成NA?</span></div>
+<div class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#na.rm本身是什麼意思？</span></div>
+<div class="sourceLine" id="cb14-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">dep_delay_mean =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> T),</div>
+<div class="sourceLine" id="cb14-4" data-line-number="4">                      <span class="dt">arr_delay_mean =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> T),</div>
+<div class="sourceLine" id="cb14-5" data-line-number="5">                      <span class="dt">dep_delay_sd =</span> <span class="kw">sd</span>(dep_delay, <span class="dt">na.rm =</span> T),</div>
+<div class="sourceLine" id="cb14-6" data-line-number="6">                      <span class="dt">arr_delay_sd =</span> <span class="kw">sd</span>(arr_delay, <span class="dt">na.rm =</span> T))</div></code></pre>
 <pre><code>## # A tibble: 1 x 4
 ##   dep_delay_mean arr_delay_mean dep_delay_sd
 ##            &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;
@@ -251,9 +252,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="2" style="list-style-type: decimal">
 <li><code>summarise_at</code>意思就是指定幾個變數進行summarise，如果遇到很多個變數的話，會比較方便。</li>
 </ol>
-<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1"><span class="co">#vars，本身是variables的意思，就是要挑哪幾個變數</span></div>
-<div class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#funs，本身是functions的意思，就是要執行哪些summary function</span></div>
-<div class="sourceLine" id="cb15-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay, arr_delay), <span class="kw">funs</span>(mean,sd), <span class="dt">na.rm =</span> T)</div></code></pre>
+<pre class="sourceCode r" id="cb16"><code class="sourceCode r"><div class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">#vars，本身是variables的意思，就是要挑哪幾個變數</span></div>
+<div class="sourceLine" id="cb16-2" data-line-number="2"><span class="co">#funs，本身是functions的意思，就是要執行哪些summary function</span></div>
+<div class="sourceLine" id="cb16-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay, arr_delay), <span class="kw">funs</span>(mean,sd), <span class="dt">na.rm =</span> T)</div></code></pre>
 <pre><code>## # A tibble: 1 x 4
 ##   dep_delay_mean arr_delay_mean dep_delay_sd
 ##            &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;
@@ -271,7 +272,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>若你是一位賣車的菜鳥業務，為了要知道各車款的優劣勢，想先了解一下這些車，平均有多少汽缸數（cyl, cylinders)，平均有幾匹馬力(hp, Gross horsepower)，你會怎麼做？</li>
 </ol>
-<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><div class="sourceLine" id="cb17-1" data-line-number="1">mtcars </div></code></pre>
+<pre class="sourceCode r" id="cb18"><code class="sourceCode r"><div class="sourceLine" id="cb18-1" data-line-number="1">mtcars </div></code></pre>
 </div>
 <div id="-1" class="section level3 unnumbered">
 <h3>自主練習</h3>
