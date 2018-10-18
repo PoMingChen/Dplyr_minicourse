@@ -35,6 +35,20 @@ showtext_auto()
 
 # 課程規劃 
 
+<div class="alert white">
+dplyr在tidyverse系列的定位<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-image"></i></a>
+</div>
+
+```{r, eval=TRUE, echo=FALSE}
+library(htmltools)
+HTML('
+<div class="collapse" id="collapseExample">
+<h3>第一部分</h3>
+<img src="./graph/tidyverse.png" style="width:50%">
+</div>
+     ')
+```
+
 ## 前言 {-}   
 
 Dplyr是R語言當中相當重要的資料處理與轉換(Data Transformation)套件，同時也是跨出探索式資料分析的第一步。
