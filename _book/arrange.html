@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-16">
+<meta name="date" content="2018-10-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -222,7 +222,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
   addKlippy('left', 'top', 'auto', '1', 'Copy code', 'Copied!');
 </script>
 <p>1.預設是由低到高</p>
-<pre class="sourceCode r" id="cb47"><code class="sourceCode r"><div class="sourceLine" id="cb47-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(dep_delay)</div></code></pre>
+<pre class="sourceCode r" id="cb48"><code class="sourceCode r"><div class="sourceLine" id="cb48-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(dep_delay)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -245,7 +245,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="2" style="list-style-type: decimal">
 <li>加入<code>desc()</code>， descending order是遞減，由高到低</li>
 </ol>
-<pre class="sourceCode r" id="cb49"><code class="sourceCode r"><div class="sourceLine" id="cb49-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay))</div></code></pre>
+<pre class="sourceCode r" id="cb50"><code class="sourceCode r"><div class="sourceLine" id="cb50-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -277,7 +277,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li><p>假設這位買家最近試駕了很多台車款，閒聊時候偶然跟你分享他獨家的選車know-how，標準是省油表現（Miles/(US) gallon,mpg)數字的十倍，再加上馬力表現的總和，越高越好，請問哪一台車應該是他的心頭好？</p></li>
 <li><p>要成交前，該位買家因為莫名原因心情好，決定要買他挑選標準該數據的前三名，請問你應該給他哪三台車的最終報價？</p></li>
 </ol>
-<pre class="sourceCode r" id="cb51"><code class="sourceCode r"><div class="sourceLine" id="cb51-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb52"><code class="sourceCode r"><div class="sourceLine" id="cb52-1" data-line-number="1">mtcars</div></code></pre>
 </div>
 <div id="-5" class="section level3 unnumbered">
 <h3>自主練習</h3>

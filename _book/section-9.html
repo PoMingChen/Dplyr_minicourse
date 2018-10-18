@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-16">
+<meta name="date" content="2018-10-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -224,13 +224,13 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>gather/spread來自哪一個套件？</li>
 </ol>
-<pre class="sourceCode r" id="cb59"><code class="sourceCode r"><div class="sourceLine" id="cb59-1" data-line-number="1">?dplyr <span class="co">#查詢特定套件用一個`?`</span></div>
-<div class="sourceLine" id="cb59-2" data-line-number="2">??gather <span class="co">#查詢特定函數用兩個`??`</span></div>
-<div class="sourceLine" id="cb59-3" data-line-number="3">??spread</div></code></pre>
+<pre class="sourceCode r" id="cb60"><code class="sourceCode r"><div class="sourceLine" id="cb60-1" data-line-number="1">?dplyr <span class="co">#查詢特定套件用一個`?`</span></div>
+<div class="sourceLine" id="cb60-2" data-line-number="2">??gather <span class="co">#查詢特定函數用兩個`??`</span></div>
+<div class="sourceLine" id="cb60-3" data-line-number="3">??spread</div></code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>引入需要的套件</li>
 </ol>
-<pre class="sourceCode r" id="cb60"><code class="sourceCode r"><div class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(tidyr)</div></code></pre>
+<pre class="sourceCode r" id="cb61"><code class="sourceCode r"><div class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">library</span>(tidyr)</div></code></pre>
 <div id="gather" class="section level4 unnumbered">
 <h4>gather()</h4>
 <blockquote>
@@ -239,8 +239,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 2. value：為「原本的欄位變數」的觀察值(obervations)，命名其新欄位的名字。<br></p>
 </blockquote>
 <p>請問這兩段程式碼結果有什麼不同？</p>
-<pre class="sourceCode r" id="cb61"><code class="sourceCode r"><div class="sourceLine" id="cb61-1" data-line-number="1"><span class="co">#總共有336,776 rows</span></div>
-<div class="sourceLine" id="cb61-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum)</div></code></pre>
+<pre class="sourceCode r" id="cb62"><code class="sourceCode r"><div class="sourceLine" id="cb62-1" data-line-number="1"><span class="co">#總共有336,776 rows</span></div>
+<div class="sourceLine" id="cb62-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 7
 ##     year month   day dep_delay arr_delay flight tailnum
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;  
@@ -255,8 +255,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ##  9  2013     1     1        -3        -8     79 N593JB 
 ## 10  2013     1     1        -2         8    301 N3ALAA 
 ## # ... with 336,766 more rows</code></pre>
-<pre class="sourceCode r" id="cb63"><code class="sourceCode r"><div class="sourceLine" id="cb63-1" data-line-number="1"><span class="co">#總共有673,552 rows</span></div>
-<div class="sourceLine" id="cb63-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum) <span class="op">%&gt;%</span><span class="st">   </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb64"><code class="sourceCode r"><div class="sourceLine" id="cb64-1" data-line-number="1"><span class="co">#總共有673,542 rows</span></div>
+<div class="sourceLine" id="cb64-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum) <span class="op">%&gt;%</span><span class="st">   </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>)</div></code></pre>
 <pre><code>## # A tibble: 673,552 x 7
 ##     year month   day flight tailnum the_delay minutes
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
@@ -271,7 +271,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ##  9  2013     1     1     79 N593JB  dep_delay      -3
 ## 10  2013     1     1    301 N3ALAA  dep_delay      -2
 ## # ... with 673,542 more rows</code></pre>
-<pre class="sourceCode r" id="cb65"><code class="sourceCode r"><div class="sourceLine" id="cb65-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(flight <span class="op">==</span><span class="st"> </span><span class="dv">1545</span>, tailnum <span class="op">==</span><span class="st"> &quot;N14228&quot;</span>)          </div></code></pre>
+<pre class="sourceCode r" id="cb66"><code class="sourceCode r"><div class="sourceLine" id="cb66-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(flight <span class="op">==</span><span class="st"> </span><span class="dv">1545</span>, tailnum <span class="op">==</span><span class="st"> &quot;N14228&quot;</span>)          </div></code></pre>
 <pre><code>## # A tibble: 2 x 7
 ##    year month   day flight tailnum the_delay minutes
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
@@ -280,8 +280,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 </div>
 <div id="spread" class="section level4 unnumbered">
 <h4>spread()</h4>
-<pre class="sourceCode r" id="cb67"><code class="sourceCode r"><div class="sourceLine" id="cb67-1" data-line-number="1"><span class="co">#先另存成一個新物件flights1方便後續操作。</span></div>
-<div class="sourceLine" id="cb67-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum)               <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) -&gt;<span class="st"> </span>flights1</div></code></pre>
+<pre class="sourceCode r" id="cb68"><code class="sourceCode r"><div class="sourceLine" id="cb68-1" data-line-number="1"><span class="co">#先另存成一個新物件flights1方便後續操作。</span></div>
+<div class="sourceLine" id="cb68-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day, dep_delay, arr_delay, flight<span class="op">:</span>tailnum)               <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="kw">c</span>(dep_delay,arr_delay), <span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) -&gt;<span class="st"> </span>flights1</div></code></pre>
 <blockquote>
 <p>基本上spread()與gather()，目的相反。將列(row, or obervations)，轉化成欄位變數(column, or variables) <br> 重要參數說明 :<br>
 1. key：挑選要將哪一個欄位變數「其obversation內容」轉換為「新欄位變數」，新欄位名稱即為原本的obervation內容。<br>
@@ -290,17 +290,33 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>下列兩段程式碼有什麼不同？哪一個可以運作成功？</li>
 </ol>
-<pre class="sourceCode r" id="cb68"><code class="sourceCode r"><div class="sourceLine" id="cb68-1" data-line-number="1">flights1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb69"><code class="sourceCode r"><div class="sourceLine" id="cb69-1" data-line-number="1">flights1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>)</div></code></pre>
 <blockquote>
 <p>使用spread的過程中，如果要轉成欄位的該觀測值(obervations)，沒有某一個欄位變數可以一對一對應的話(be unique)，轉換就會失敗。所以可以新增一行unique index column。</p>
 </blockquote>
 <p>相關資料參考<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<pre class="sourceCode r" id="cb69"><code class="sourceCode r"><div class="sourceLine" id="cb69-1" data-line-number="1">flights1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(the_delay) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">             </span><span class="kw">mutate</span>(<span class="dt">grouped_id =</span> <span class="kw">row_number</span>())</div></code></pre>
 <pre class="sourceCode r" id="cb70"><code class="sourceCode r"><div class="sourceLine" id="cb70-1" data-line-number="1">flights1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(the_delay) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">             </span><span class="kw">mutate</span>(<span class="dt">grouped_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">             </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">             </span><span class="kw">select</span>(<span class="op">-</span>grouped_id)</div></code></pre>
+<div class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">             </span><span class="kw">mutate</span>(<span class="dt">grouped_id =</span> <span class="kw">row_number</span>())</div></code></pre>
+<pre><code>## # A tibble: 673,552 x 8
+## # Groups:   the_delay [2]
+##     year month   day flight tailnum the_delay minutes
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+##  1  2013     1     1   1545 N14228  dep_delay       2
+##  2  2013     1     1   1714 N24211  dep_delay       4
+##  3  2013     1     1   1141 N619AA  dep_delay       2
+##  4  2013     1     1    725 N804JB  dep_delay      -1
+##  5  2013     1     1    461 N668DN  dep_delay      -6
+##  6  2013     1     1   1696 N39463  dep_delay      -4
+##  7  2013     1     1    507 N516JB  dep_delay      -5
+##  8  2013     1     1   5708 N829AS  dep_delay      -3
+##  9  2013     1     1     79 N593JB  dep_delay      -3
+## 10  2013     1     1    301 N3ALAA  dep_delay      -2
+## # ... with 673,542 more rows, and 1 more variable:
+## #   grouped_id &lt;int&gt;</code></pre>
+<pre class="sourceCode r" id="cb72"><code class="sourceCode r"><div class="sourceLine" id="cb72-1" data-line-number="1">flights1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(the_delay) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb72-2" data-line-number="2"><span class="st">             </span><span class="kw">mutate</span>(<span class="dt">grouped_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></div>
+<div class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">             </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;the_delay&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;minutes&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">             </span><span class="kw">select</span>(<span class="op">-</span>grouped_id)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 7
 ##     year month   day flight tailnum arr_delay dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;

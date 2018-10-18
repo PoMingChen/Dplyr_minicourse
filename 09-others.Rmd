@@ -57,7 +57,7 @@ flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum)
 ```
 
 ```{r}
-#總共有673,552 rows
+#總共有673,542 rows
 flights %>% select(year:day, dep_delay, arr_delay, flight:tailnum) %>%   gather(c(dep_delay,arr_delay), key = "the_delay", value = "minutes")
 ```
 
@@ -86,7 +86,7 @@ flights1 %>% spread(key = "the_delay", value = "minutes")
 
 相關資料參考[^1]
 
-```{r, eval=FALSE}
+```{r}
 flights1 %>% group_by(the_delay) %>% 
              mutate(grouped_id = row_number())
 ```
