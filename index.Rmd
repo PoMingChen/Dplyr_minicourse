@@ -59,7 +59,8 @@ Dplyr是R語言當中相當重要的資料處理與轉換(Data Transformation)�
 
 ## 課前要求 {-}  
 
-1. 安裝：R and R Studio Desktop: https://www.rstudio.com  
+1. 安裝：[R](http://cran.csie.ntu.edu.tw) 
+2. 安裝：[R Studio Desktop](https://www.rstudio.com/products/rstudio/download/)
 2. [下載dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) 
 3. 註冊[Github](https://github.com)
 4. 用Github帳戶登入右下角gitter open chat聊天室
