@@ -50,7 +50,7 @@ flights %>% group_by(carrier, flight) %>%
             arrange(desc(dep_delay)) %>% rename(dep_delay_mean = dep_delay)
 ```
 
-3. 我想要知道1~12月份，「各月份」的「每一天」，航班「平均起飛延遲」嚴重程度？（group_by + arrange組合技）
+3. 我想要知道1~12月份，「每個月份」的「各個日期」，航班「平均起飛延遲」嚴重程度比較？（group_by + arrange組合技）
 ```{r}
 #意思就是，群內（或者說組內）排序怎麼做？
 #請查詢 Help，重點是arrange函數裡面的 .by_group 參數
@@ -77,7 +77,7 @@ flights %>% group_by(month, day) %>%
 mtcars
 ```
 
-```{r, eval=FALSE,include=FALSE}
+```{r, eval=FALSE}
 mtcars %>% group_by(cyl) %>% arrange(desc(hp), .by_group = T)
 ```
 

@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-18">
+<meta name="date" content="2018-10-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -224,8 +224,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>基本取法</li>
 </ol>
-<pre class="sourceCode r" id="cb19"><code class="sourceCode r"><div class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">#若我想看每一個航班的基本資料，包含起飛與目的地</span></div>
-<div class="sourceLine" id="cb19-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year,month,day,carrier,flight,tailnum,origin,dest)</div></code></pre>
+<pre class="sourceCode r" id="cb22"><code class="sourceCode r"><div class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#若我想看每一個航班的基本資料，包含起飛與目的地</span></div>
+<div class="sourceLine" id="cb22-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year,month,day,carrier,flight,tailnum,origin,dest)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 8
 ##     year month   day carrier flight tailnum origin
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -244,8 +244,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="2" style="list-style-type: decimal">
 <li>取連續某幾行的欄位</li>
 </ol>
-<pre class="sourceCode r" id="cb21"><code class="sourceCode r"><div class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">#跟上面的寫法，有什麼異同？</span></div>
-<div class="sourceLine" id="cb21-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day,carrier<span class="op">:</span>dest)</div></code></pre>
+<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><div class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">#跟上面的寫法，有什麼異同？</span></div>
+<div class="sourceLine" id="cb24-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(year<span class="op">:</span>day,carrier<span class="op">:</span>dest)</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 8
 ##     year month   day carrier flight tailnum origin
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -264,8 +264,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="3" style="list-style-type: decimal">
 <li>取特定類型的欄位</li>
 </ol>
-<pre class="sourceCode r" id="cb23"><code class="sourceCode r"><div class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">#若我有想看有關起飛與抵達的資料，contains()，就能派上用場，當然也有其他內容，請參考cheatsheet</span></div>
-<div class="sourceLine" id="cb23-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;dep&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;arr&quot;</span>))</div></code></pre>
+<pre class="sourceCode r" id="cb26"><code class="sourceCode r"><div class="sourceLine" id="cb26-1" data-line-number="1"><span class="co">#若我有想看有關起飛與抵達的資料，contains()，就能派上用場，當然也有其他內容，請參考cheatsheet</span></div>
+<div class="sourceLine" id="cb26-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;dep&quot;</span>), <span class="kw">contains</span>(<span class="st">&quot;arr&quot;</span>))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 7
 ##    dep_time sched_dep_time dep_delay arr_time
 ##       &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
@@ -285,8 +285,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="4" style="list-style-type: decimal">
 <li>去掉某些變數(drop certain variables)</li>
 </ol>
-<pre class="sourceCode r" id="cb25"><code class="sourceCode r"><div class="sourceLine" id="cb25-1" data-line-number="1"><span class="co">#若我留意有些變數，對後續分析沒有幫助...</span></div>
-<div class="sourceLine" id="cb25-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour))</div></code></pre>
+<pre class="sourceCode r" id="cb28"><code class="sourceCode r"><div class="sourceLine" id="cb28-1" data-line-number="1"><span class="co">#若我留意有些變數，對後續分析沒有幫助...</span></div>
+<div class="sourceLine" id="cb28-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 18
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -306,8 +306,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 ## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;</code></pre>
-<pre class="sourceCode r" id="cb27"><code class="sourceCode r"><div class="sourceLine" id="cb27-1" data-line-number="1"><span class="co">#一次可以去掉多個變數嗎？</span></div>
-<div class="sourceLine" id="cb27-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour,tailnum,flight))</div></code></pre>
+<pre class="sourceCode r" id="cb30"><code class="sourceCode r"><div class="sourceLine" id="cb30-1" data-line-number="1"><span class="co">#一次可以去掉多個變數嗎？</span></div>
+<div class="sourceLine" id="cb30-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(time_hour,tailnum,flight))</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 16
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -329,9 +329,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="5" style="list-style-type: decimal">
 <li>everthing()</li>
 </ol>
-<pre class="sourceCode r" id="cb29"><code class="sourceCode r"><div class="sourceLine" id="cb29-1" data-line-number="1"><span class="co">#everything()，意思是all variables的意思。</span></div>
-<div class="sourceLine" id="cb29-2" data-line-number="2"><span class="co">#稍等與mutate()一起使用可以提升資料整理的效率性。</span></div>
-<div class="sourceLine" id="cb29-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">everything</span>())</div></code></pre>
+<pre class="sourceCode r" id="cb32"><code class="sourceCode r"><div class="sourceLine" id="cb32-1" data-line-number="1"><span class="co">#everything()，意思是all variables的意思。</span></div>
+<div class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">#稍等與mutate()一起使用可以提升資料整理的效率性。</span></div>
+<div class="sourceLine" id="cb32-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">everything</span>())</div></code></pre>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -360,7 +360,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要怎麼整理資料給他？</li>
 </ol>
-<pre class="sourceCode r" id="cb31"><code class="sourceCode r"><div class="sourceLine" id="cb31-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb34"><code class="sourceCode r"><div class="sourceLine" id="cb34-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb35"><code class="sourceCode r"><div class="sourceLine" id="cb35-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(car_name, mpg, hp)</div></code></pre>
 </div>
 <div id="-2" class="section level3 unnumbered">
 <h3>自主練習</h3>

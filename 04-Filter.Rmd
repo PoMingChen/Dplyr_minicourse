@@ -69,7 +69,7 @@ flights %>% filter(carrier %in% c("UA","US"), dep_delay + arr_delay <= 30)
 mtcars
 ```
 
-```{r, eval=FALSE,include=FALSE}
+```{r, eval=FALSE}
 mtcars %>% select(car_name, mpg, hp) %>% filter(hp > mean(hp, na.rm = T))
 ```
 

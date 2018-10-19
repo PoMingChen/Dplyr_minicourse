@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-18">
+<meta name="date" content="2018-10-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -224,7 +224,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>基本用法</li>
 </ol>
-<pre class="sourceCode r" id="cb32"><code class="sourceCode r"><div class="sourceLine" id="cb32-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(month<span class="op">==</span><span class="dv">1</span>, day<span class="op">==</span><span class="dv">2</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb36"><code class="sourceCode r"><div class="sourceLine" id="cb36-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(month<span class="op">==</span><span class="dv">1</span>, day<span class="op">==</span><span class="dv">2</span>)</div></code></pre>
 <pre><code>## # A tibble: 943 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -250,7 +250,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <blockquote>
 <p>眾多logical and boolean operators，請參考cheatsheet</p>
 </blockquote>
-<pre class="sourceCode r" id="cb34"><code class="sourceCode r"><div class="sourceLine" id="cb34-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(dep_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(dep_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>)</div></code></pre>
 <pre><code>## # A tibble: 249,192 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -273,7 +273,7 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="3" style="list-style-type: decimal">
 <li>做變數計算並作為篩選條件</li>
 </ol>
-<pre class="sourceCode r" id="cb36"><code class="sourceCode r"><div class="sourceLine" id="cb36-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(dep_delay <span class="op">+</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb40"><code class="sourceCode r"><div class="sourceLine" id="cb40-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(dep_delay <span class="op">+</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>)</div></code></pre>
 <pre><code>## # A tibble: 256,128 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -296,9 +296,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="4" style="list-style-type: decimal">
 <li>看起來比較特別的%in%，是什麼？</li>
 </ol>
-<pre class="sourceCode r" id="cb38"><code class="sourceCode r"><div class="sourceLine" id="cb38-1" data-line-number="1"><span class="co">#基本理解是：是否屬於。</span></div>
-<div class="sourceLine" id="cb38-2" data-line-number="2"><span class="co">#在字串變數(character)的挑選，以及其他字串操作上很常用</span></div>
-<div class="sourceLine" id="cb38-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;UA&quot;</span>,<span class="st">&quot;US&quot;</span>), dep_delay <span class="op">+</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb42"><code class="sourceCode r"><div class="sourceLine" id="cb42-1" data-line-number="1"><span class="co">#基本理解是：是否屬於。</span></div>
+<div class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">#在字串變數(character)的挑選，以及其他字串操作上很常用</span></div>
+<div class="sourceLine" id="cb42-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;UA&quot;</span>,<span class="st">&quot;US&quot;</span>), dep_delay <span class="op">+</span><span class="st"> </span>arr_delay <span class="op">&lt;=</span><span class="st"> </span><span class="dv">30</span>)</div></code></pre>
 <pre><code>## # A tibble: 63,006 x 19
 ##     year month   day dep_time sched_dep_time dep_delay
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
@@ -328,7 +328,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li><p>若有一位買家對於這32台車子很有興趣，特別是在省油表現（Miles/(US) gallon, mpg)，以及馬力表現(hp, Gross horsepower)有很大的興趣，你要整理哪些資料？</p></li>
 <li><p>後來他希望能夠買到馬力性能比較強的車，他要求你將馬力表現高於平均的車款額外整理給他，應該怎麼做呢？</p></li>
 </ol>
-<pre class="sourceCode r" id="cb40"><code class="sourceCode r"><div class="sourceLine" id="cb40-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb44"><code class="sourceCode r"><div class="sourceLine" id="cb44-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb45"><code class="sourceCode r"><div class="sourceLine" id="cb45-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(car_name, mpg, hp) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(hp <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(hp, <span class="dt">na.rm =</span> T))</div></code></pre>
 </div>
 <div id="-3" class="section level3 unnumbered">
 <h3>自主練習</h3>

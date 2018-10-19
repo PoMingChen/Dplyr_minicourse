@@ -74,7 +74,7 @@ flights %>% summarise_at(vars(dep_delay, arr_delay), funs(mean,sd), na.rm = T)
 mtcars 
 ```
 
-```{r, echo=FALSE,include=FALSE}
+```{r, eval=FALSE}
 mtcars %>% summarise_at(vars(cyl,hp), funs(mean), na.rm = T)
 ```
 

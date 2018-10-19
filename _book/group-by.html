@@ -25,7 +25,7 @@
 <meta name="author" content="陳柏銘PoMingChen">
 
 
-<meta name="date" content="2018-10-18">
+<meta name="date" content="2018-10-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,9 +227,9 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol style="list-style-type: decimal">
 <li>用group_by函數看看「哪一家航空公司(carrier)」的「平均起飛延遲」最嚴重？</li>
 </ol>
-<pre class="sourceCode r" id="cb53"><code class="sourceCode r"><div class="sourceLine" id="cb53-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">dep_delay_mean =</span> dep_delay)</div></code></pre>
+<pre class="sourceCode r" id="cb60"><code class="sourceCode r"><div class="sourceLine" id="cb60-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">dep_delay_mean =</span> dep_delay)</div></code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier dep_delay_mean
 ##    &lt;chr&gt;            &lt;dbl&gt;
@@ -252,10 +252,10 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <ol start="2" style="list-style-type: decimal">
 <li>可以設定多個分組依據</li>
 </ol>
-<pre class="sourceCode r" id="cb55"><code class="sourceCode r"><div class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># 我想要知道個別`航空公司(carrier) `，哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？</span></div>
-<div class="sourceLine" id="cb55-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier, flight) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb55-4" data-line-number="4"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">dep_delay_mean =</span> dep_delay)</div></code></pre>
+<pre class="sourceCode r" id="cb62"><code class="sourceCode r"><div class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># 我想要知道個別`航空公司(carrier) `，哪些`航班路線(Flight number)`起飛通常比較容易遇到延遲？</span></div>
+<div class="sourceLine" id="cb62-2" data-line-number="2">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(carrier, flight) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">dep_delay_mean =</span> dep_delay)</div></code></pre>
 <pre><code>## # A tibble: 5,725 x 3
 ## # Groups:   carrier [16]
 ##    carrier flight dep_delay_mean
@@ -272,13 +272,13 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 ## 10 WN         217            195
 ## # ... with 5,715 more rows</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>我想要知道1~12月份，「各月份」的「每一天」，航班「平均起飛延遲」嚴重程度？（group_by + arrange組合技）</li>
+<li>我想要知道1~12月份，「每個月份」的「各個日期」，航班「平均起飛延遲」嚴重程度比較？（group_by + arrange組合技）</li>
 </ol>
-<pre class="sourceCode r" id="cb57"><code class="sourceCode r"><div class="sourceLine" id="cb57-1" data-line-number="1"><span class="co">#意思就是，群內（或者說組內）排序怎麼做？</span></div>
-<div class="sourceLine" id="cb57-2" data-line-number="2"><span class="co">#請查詢 Help，重點是arrange函數裡面的 .by_group 參數</span></div>
-<div class="sourceLine" id="cb57-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
-<div class="sourceLine" id="cb57-5" data-line-number="5"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay), <span class="dt">.by_group =</span> T)</div></code></pre>
+<pre class="sourceCode r" id="cb64"><code class="sourceCode r"><div class="sourceLine" id="cb64-1" data-line-number="1"><span class="co">#意思就是，群內（或者說組內）排序怎麼做？</span></div>
+<div class="sourceLine" id="cb64-2" data-line-number="2"><span class="co">#請查詢 Help，重點是arrange函數裡面的 .by_group 參數</span></div>
+<div class="sourceLine" id="cb64-3" data-line-number="3">flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(month, day) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">            </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(dep_delay), <span class="kw">funs</span>(mean), <span class="dt">na.rm =</span> T) <span class="op">%&gt;%</span><span class="st"> </span></div>
+<div class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">            </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay), <span class="dt">.by_group =</span> T)</div></code></pre>
 <pre><code>## # A tibble: 365 x 3
 ## # Groups:   month [12]
 ##    month   day dep_delay
@@ -307,7 +307,8 @@ code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Infor
 <li><p>要成交前，該位買家因為莫名原因心情好，決定要買他挑選標準該數據的前三名，請問你應該給他哪三台車的最終報價？</p></li>
 <li><p>服務完這位客戶後，發現自己累積了不少經驗，也留意到汽缸數多寡與馬力有一定關聯性，閒來之餘想要整理一下相同汽缸數下，不同車款的馬力比較表作為往後參考，請問該怎麼做？</p></li>
 </ol>
-<pre class="sourceCode r" id="cb59"><code class="sourceCode r"><div class="sourceLine" id="cb59-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb66"><code class="sourceCode r"><div class="sourceLine" id="cb66-1" data-line-number="1">mtcars</div></code></pre>
+<pre class="sourceCode r" id="cb67"><code class="sourceCode r"><div class="sourceLine" id="cb67-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(hp), <span class="dt">.by_group =</span> T)</div></code></pre>
 </div>
 <div id="-6" class="section level3 unnumbered">
 <h3>自主練習</h3>

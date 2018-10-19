@@ -58,7 +58,7 @@ flights %>% arrange(desc(dep_delay))
 mtcars
 ```
 
-```{r, eval=FALSE,include=FALSE}
+```{r, eval=FALSE}
 mtcars %>% select(car_name, mpg, hp) %>% 
            filter(hp > mean(hp, na.rm = T)) %>% 
            mutate(good_cars = mpg*10 + hp) %>% 

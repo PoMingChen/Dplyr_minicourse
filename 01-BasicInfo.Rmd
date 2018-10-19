@@ -83,15 +83,15 @@ flights %>% rename(total_distance = distance)
 mtcars
 ```
 
-```{r, echo=FALSE,include=FALSE}
+```{r, eval=FALSE}
 ?mtcars
 ```
 
-```{r, echo=FALSE,include=FALSE}
+```{r, eval=FALSE}
 str(mtcars)
 ```
 
-```{r, echo=FALSE,include=FALSE}
+```{r, eval=FALSE}
 mtcars %>% rename(horsepower = hp)
 ```
 
